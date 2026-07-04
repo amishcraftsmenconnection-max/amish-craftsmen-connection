@@ -1,0 +1,583 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { contractors } from "../../data/contractors.js";
+
+export async function getStaticPaths() {
+  const dynamicServices = contractors.flatMap(c => 
+    c.service ? c.service.split(',').map(s => s.trim()) : []
+  );
+
+  const emptyServicesList = [
+    "Custom Cabinets",
+    "Roofers Siding Specialists",
+    "Renovations",
+    "Renovation"
+  ];
+
+  const allServicesCombined = [...dynamicServices, ...emptyServicesList];
+  const uniqueServices = [...new Set(allServicesCombined)];
+
+  return uniqueServices.map(service => ({
+    params: {
+      service: service.toLowerCase().replaceAll("/", "-").replaceAll(" ", "-")
+    }
+  }));
+}
+
+const { service } = Astro.params;
+
+const filtered = contractors.filter(contractor => {
+  if (!contractor.service) return false;
+  const individualServices = contractor.service.split(',').map(s => 
+    s.trim().toLowerCase().replaceAll("/", "-").replaceAll(" ", "-")
+  );
+  
+  return individualServices.some(s => s.includes(service) || service.includes(s));
+});
+
+const formattedTitle = service
+  ? service.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+  : "Our Services";
+
+const activeStates = [...new Set(filtered.map(c => c.state))].filter(Boolean).sort();
+---
+
+<MainLayout title={formattedTitle}>
+  <div class="services-container">
+    <header class="page-header">
+      <a href="/services" class="back-link">
+        <svg xmlns="http://w3.org" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to All Services
+      </a>
+      <p class="subtitle">Amish Craftsmen Connection</p>
+      <h1 class="title">{formattedTitle} Specialists</h1>
+      <div class="accent-line"></div>
+      <p class="description">
+        Browse our hand-selected, verified premium Amish craftsmen specializing in high-quality {formattedTitle.toLowerCase()} work.
+      </p>
+
+      <!-- 🌟 PREMIUM FILTER DASHBOARD BAR -->
+      {filtered.length > 0 && (
+        <div class="filter-wrapper">
+          <div class="filter-box">
+            <div class="select-container">
+              <svg class="select-icon" xmlns="http://w3.org" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <select id="stateFilter" class="filter-select">
+                <option value="all">All Locations ({filtered.length})</option>
+                {activeStates.map(state => {
+                  const count = filtered.filter(c => c.state === state).length;
+                  return <option value={state.toLowerCase().trim()}>{state} ({count})</option>
+                })}
+              </select>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+
+    {filtered.length > 0 ? (
+      <div>
+        <div class="contractors-grid" id="contractorsGrid">
+          {filtered.map(contractor => (
+            <a href={`/contractors/${contractor.slug}`} class="contractor-premium-link" data-state={contractor.state ? contractor.state.toLowerCase().trim() : ''}>
+              <article class="contractor-card">
+                
+                <!-- 🌟 TOP HALF: SPLIT BUSINESS CARD GRAPHIC HEADER -->
+                <div class="card-graphic-header">
+                  <div class="graphic-left-content">
+                    <h3 class="graphic-firm-name">{contractor.name}</h3>
+                    <p class="graphic-sub-badge">Amish Contractor</p>
+                    
+                    <ul class="graphic-mini-details">
+                      <li>📞 {contractor.phone || "No Phone Registered"}</li>
+                      <li>🌐 ://amishcraftsmenconnection.com</li>
+                      <li>📍 {contractor.city || "Operating Area"}, {contractor.state || "US"}</li>
+                      <li>🛠 {contractor.service || "Amish Handiwork"}</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="graphic-brand-side">
+                    <div class="brand-logo-panel">
+                      <div class="logo-mark-svg">
+                        <svg width="65" height="45" viewBox="0 0 100 70" fill="none" xmlns="http://w3.org">
+                          <path d="M50 5 L95 45 M50 5 L5 45" stroke="#fdf6f0" stroke-width="4" stroke-linecap="round"/>
+                          <path d="M35 50 L35 30 L45 30 L45 50 Z" fill="#fdf6f0"/>
+                          <path d="M60 45 L75 25 M65 25 L80 45" stroke="#fdf6f0" stroke-width="4" stroke-linecap="round"/>
+                        </svg>
+                      </div>
+                      <span class="logo-brand-text">Amish Craftsmen Connection</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 🌟 BOTTOM HALF: DETAILS CONTENT LAYER -->
+                <div class="card-body-content">
+                  <div class="badge-row">
+                    {contractor.service && contractor.service.split(',').map(s => (
+                      <span class="service-pill">{s.trim().toUpperCase()}</span>
+                    ))}
+                  </div>
+                  
+                  <h2 class="display-contractor-name">{contractor.name}</h2>
+                  
+                  <p class="display-location-text">
+                    📍 {contractor.city ? `${contractor.city}, ` : ''}{contractor.state || "Operating Area"}
+                  </p>
+                  
+                  <div class="card-action-footer">
+                    <span class="action-link-text">View Profile →</span>
+                  </div>
+                </div>
+
+              </article>
+            </a>
+          ))}
+        </div>
+
+        <!-- Dynamic JS Filter Empty State Target Block -->
+        <div id="filterEmptyState" class="empty-state hidden-element">
+          <p>No verified craftsmen found in this specific area at the moment.</p>
+        </div>
+      </div>
+    ) : (
+      /* 🛠️ FALLBACK UI FOR CHANNELS WITHOUT ACTIVE CONTRACTORS */
+      <div class="no-craftsmen-card">
+        <div class="icon-alert">⚠️</div>
+        <h2>No Craftsmen Found</h2>
+        <p class="intro-text">
+          We currently do not have verified Amish craftsmen listed online for <strong>{formattedTitle}</strong>.
+        </p>
+        
+        <div class="card-divider"></div>
+        
+        <p class="action-text">However, our team can still source providers offline! Please contact us directly for an immediate inquiry:</p>
+        
+        <div class="contact-methods">
+          <a href="tel:+18002660037" class="contact-btn phone-btn">
+            📞 Call Hotline: +1 800-266-0037
+          </a>
+          <a href={`mailto:inquire@://amishcraftsmenconnection.com about ${formattedTitle}`} class="contact-btn email-btn">
+            ✉️ Email to Inquire
+          </a>
+        </div>
+      </div>
+    )}
+  </div>
+</MainLayout>
+
+<!-- 🌟 FIXED: SINGLE UNIFIED CLIENT FILTER SCRIPT -->
+<script>
+  function setupStateFilter() {
+    const selectEl = document.getElementById('stateFilter') as HTMLSelectElement;
+    const gridEl = document.getElementById('contractorsGrid');
+    const emptyEl = document.getElementById('filterEmptyState');
+    
+    if (!selectEl || !gridEl) return;
+    
+    const cards = gridEl.querySelectorAll('.contractor-premium-link');
+
+    selectEl.addEventListener('change', (e) => {
+      const target = e.target as HTMLSelectElement;
+      const selectedValue = target.value;
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cardHtml = card as HTMLElement;
+        const cardState = cardHtml.getAttribute('data-state') || '';
+
+        if (selectedValue === 'all' || cardState === selectedValue) {
+          cardHtml.classList.remove('hidden-element');
+          visibleCount++;
+        } else {
+          cardHtml.classList.add('hidden-element');
+        }
+      });
+
+      if (emptyEl) {
+        if (visibleCount === 0) {
+          emptyEl.classList.remove('hidden-element');
+        } else {
+          emptyEl.classList.add('hidden-element');
+        }
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupStateFilter);
+  document.addEventListener('astro:after-swap', setupStateFilter);
+</script>
+
+<style>
+  /* 🌟 CORE LAYOUT CONTAINER */
+  .services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  /* 🌟 TOP HEADER PANEL */
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #d4a373;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    transition: color 0.15s ease;
+  }
+
+  .back-link:hover {
+    color: #f4f1de;
+  }
+
+  .subtitle {
+    color: #d4a373;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    color: #ffffff;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+  }
+
+  .accent-line {
+    width: 60px;
+    height: 3px;
+    background-color: #d4a373;
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .description {
+    color: #e0dcd5;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.6;
+  }
+
+  /* 🌟 LOCATION FILTER ELEMENT STYLING */
+  .filter-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .filter-box {
+    background: #ffffff;
+    border: 1px solid #eaddd3;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.select-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #8b5a2b;
+}
+
+.filter-select {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2c2520;
+  padding-right: 1.5rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* 🌟 PREMIUM RESPONSIVE GRID MATRIX */
+.contractors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.contractor-premium-link {
+  text-decoration: none !important;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+}
+
+.contractor-card {
+  background: #ffffff;
+  border: 1px solid #eaddd3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contractor-premium-link:hover .contractor-card {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(139, 90, 43, 0.14);
+}
+
+/* 🌟 TOP HALF: BUSINESS CARD GRAPHIC HEADER */
+.card-graphic-header {
+  display: flex;
+  background: #fdfaf7;
+  height: 155px;
+  position: relative;
+  border-bottom: 1px solid #ebdcd0;
+}
+
+.graphic-left-content {
+  flex: 1.1;
+  padding: 1.25rem 0.75rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.graphic-firm-name {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2c2520;
+  line-height: 1.2;
+}
+
+.graphic-sub-badge {
+  margin: 0.15rem 0 0.5rem 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #8b5a2b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.graphic-mini-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.65rem;
+  color: #60554c;
+  line-height: 1.5;
+}
+
+.graphic-mini-details li {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+/* THE DIAGONAL SPLIT ACCENT BRAND efek LAYER */
+.graphic-brand-side {
+  width: 38%;
+  background: #2c2520;
+  clip-path: polygon(22% 0%, 100% 0%, 100% 100%, 0% 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.5rem 1rem 1.5rem;
+  margin-left: -1px;
+}
+
+.brand-logo-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.logo-mark-svg {
+  margin-bottom: 0.35rem;
+  opacity: 0.95;
+}
+
+.logo-brand-text {
+  color: #fdf6f0;
+  font-size: 0.55rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  opacity: 0.85;
+}
+
+/* 🌟 BOTTOM HALF: TEXT FIELDS AREA */
+.card-body-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.service-pill {
+  background: #fdf6f0;
+  color: #8b5a2b;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #f3e5da;
+  letter-spacing: 0.02em;
+}
+
+.display-contractor-name {
+  font-size: 1.45rem;
+  color: #2c2520;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.display-location-text {
+  font-size: 0.95rem;
+  color: #60554c;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+}
+
+.card-action-footer {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid #f3e5da;
+}
+
+.action-link-text {
+  color: #8b5a2b;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: color 0.15s ease, transform 0.15s ease;
+  display: inline-block;
+}
+
+.contractor-premium-link:hover .action-link-text {
+  color: #5c3a1a;
+  transform: translateX(4px);
+}
+
+/* 🛠️ FALLBACK CARD STYLES */
+.no-craftsmen-card {
+  background-color: #2c2520;
+  border: 1px solid #8b5a2b;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 2rem auto 4rem auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.icon-alert {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.no-craftsmen-card h2 {
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.intro-text {
+  color: #e0dcd5;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.card-divider {
+  width: 60px;
+  height: 2px;
+  background-color: #8b5a2b;
+  margin: 1.5rem auto;
+}
+
+.action-text {
+  color: #d4a373;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 340px;
+  padding: 0.9rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.phone-btn {
+  background-color: #8b5a2b;
+  color: #ffffff;
+}
+
+.phone-btn:hover {
+  background-color: #a46d38;
+  transform: translateY(-2px);
+}
+
+.email-btn {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.email-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #60554c;
+  font-size: 1.1rem;
+}
+
+.hidden-element {
+  display: none !important;
+}
+</style>

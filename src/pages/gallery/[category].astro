@@ -1,0 +1,307 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+// 1. Tell Astro exactly what galleries exist so it can build them statically
+export async function getStaticPaths() {
+  return [
+    { params: { category: "home-builders" } },
+    { params: { category: "roofers-siding" } }, // Matches link from home page
+    { params: { category: "roofing-siding" } }, // Catch-all fallback match
+    { params: { category: "custom-cabinets" } },
+    { params: { category: "decks" } },
+    { params: { category: "fencing" } },
+    { params: { category: "renovations" } },
+    { params: { category: "logging" } },
+    { params: { category: "pole-barns" } },
+    { params: { category: "masonry" } },
+    { params: { category: "sheds" } },
+    { params: { category: "homegoods" } },
+    { params: { category: "home-improvement" } },
+    { params: { category: "insulation" } },
+  ];
+}
+
+const { category } = Astro.params;
+
+// Friendly naming dictionary map
+const categoryTitles: Record<string, string> = {
+  "home-builders": "Home Builders Directory",
+  "roofers-siding": "Roofing & Siding Specialists",
+  "roofing-siding": "Roofing & Siding Specialists",
+  "custom-cabinets": "Custom Cabinet Handiwork",
+  "decks": "Custom Deck Construction",
+  "fencing": "Durable Fencing Installations",
+  "renovations": "Property Renovations & Framing",
+  "logging": "Professional Logging & Timber Harvesting",
+  "pole-barns": "Heavy Duty Pole Barn Construction",
+  "masonry": "Master Masonry, Brick & Stone",
+  "sheds": "Custom Backyard Sheds & Storage",
+  "homegoods": "Handcrafted Amish Homegoods",
+  "home-improvement": "Home Improvement & Remodeling",
+  "insulation": "High-Efficiency Insulation Solutions"
+};
+
+const displayTitle = categoryTitles[category || ""] || "Craftsmen Gallery";
+
+// Mock Sample Projects Array (Uses your existing background image for testing)
+const allProjects = [
+  { id: 1, title: "Modern Timber Farmhouse", desc: "Heavy oak beams and tongue-and-groove layout ceilings.", img: "/images/off-road-logging.png" },
+  { id: 2, title: "Premium Standing Seam Roof", desc: "Commercial-grade weather resistant metal installation.", img: "/images/levi-yoder.png" },
+  { id: 3, title: "Hand-Planed Walnut Cabinets", desc: "Soft-close dovetail drawers built from local hardwood.", img: "/images/levi-yoder.png" },
+  { id: 4, title: "Traditional Heritage Barn Construction", desc: "Built using authentic mortise and tenon wood joinery.", img: "/images/levi-yoder.png" },
+  { id: 5, title: "Complete Kitchen Overhaul", desc: "Full redesign matching modern appliances with warm styles.", img: "/images/levi-yoder.png" },
+  { id: 6, title: "Custom Cedar Deck Extension", desc: "Multi-level wrap-around outdoor entertainment zone.", img: "/images/levi-yoder.png" },
+  { id: 7, title: "Custom Oak Framework Gazebo", desc: "Elegant garden structure with hand-carved pillars.", img: "/images/levi-yoder.png" },
+  { id: 8, title: "Finished Basement Craft Room", desc: "Insulated and fitted out with custom storage walls.", img: "/images/levi-yoder.png" }
+];
+
+// Split projects: Show first 3 initially, hide the rest
+const initialProjects = allProjects.slice(0, 3);
+const hiddenProjects = allProjects.slice(3);
+---
+
+<MainLayout title={`${displayTitle} | Gallery`}>
+  <div class="gallery-wrapper">
+    
+    <div class="gallery-header">
+      <a href="/" class="back-link">← Back to Home</a>
+      <h1>{displayTitle}</h1>
+      <p>Explore verified structural projects handcrafted by master Amish contractors.</p>
+    </div>
+
+    <!-- INITIAL DISPLAY STREAM -->
+    <div class="gallery-grid">
+      {initialProjects.map((project) => (
+        <div class="project-photo-card">
+          <div class="img-frame">
+            <img src={project.img} alt={project.title} />
+          </div>
+          <div class="project-details">
+            <h3>{project.title}</h3>
+            <p>{project.desc}</p>
+          </div>
+        </div>
+      ))}
+
+      <!-- HIDDEN STREAM COMPONENT (Revealed via Client JS Button Click) -->
+      {hiddenProjects.map((project) => (
+        <div class="project-photo-card hidden-project" style="display: none;">
+          <div class="img-frame">
+            <img src={project.img} alt={project.title} />
+          </div>
+          <div class="project-details">
+            <h3>{project.title}</h3>
+            <p>{project.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- REVEAL CONTROL ENGINE TRIGGER BUTTON
+    {hiddenProjects.length > 0 && (
+      <div class="action-btn-row">
+        <button type="button" id="showMoreBtn" class="reveal-gallery-btn">
+          Show More Projects <span class="plus-icon">+</span>
+        </button>
+      </div>
+    )} -->
+
+  </div>
+
+  <!-- Inside src/pages/contractors/[category].astro conditional block
+<div class="no-results-card">
+  <div class="search-icon">
+    <svg xmlns="http://w3.org" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8c8c8c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+  </div>
+  
+  <h2>No Craftsmen Found</h2>
+  
+  <p>Having trouble reaching this crew? Our Central Dispatch Team can intervene to manually coordinate your build.</p>
+  
+  <div class="button-group">
+    <a href="tel:+18002660037" class="btn btn-dark">
+      <svg xmlns="http://w3.org" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Call Central Dispatch
+    </a>
+    
+    <a href="mailto:dispatch@://amishcraftsmenconnection.com" class="btn btn-light">
+      <svg xmlns="http://w3.org" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Email Project Specs
+    </a>
+  </div>
+</div> -->
+
+</MainLayout>
+
+<script>
+  const showMoreBtn = document.getElementById('showMoreBtn');
+  const hiddenCards = document.querySelectorAll('.hidden-project');
+
+  showMoreBtn?.addEventListener('click', () => {
+    hiddenCards.forEach((card) => {
+      (card as HTMLElement).style.display = 'flex';
+    });
+    if (showMoreBtn.parentElement) {
+      showMoreBtn.parentElement.style.display = 'none';
+    }
+  });
+</script>
+
+<style>
+  .gallery-wrapper {
+    max-width: 1200px !important;
+    margin: 110px auto 60px auto !important; 
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .gallery-header {
+    text-align: left !important;
+    margin-bottom: 40px !important;
+  }
+
+  .back-link {
+    color: #5c3b28 !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    display: inline-block !important;
+    margin-bottom: 15px !important;
+  }
+
+  .gallery-header h1 {
+    font-size: 2.5rem !important;
+    color: #2b1a11 !important;
+    margin: 0 0 10px 0 !important;
+    font-weight: 800 !important;
+  }
+
+  .gallery-header p {
+    color: #666 !important;
+    font-size: 1.1rem !important;
+    margin: 0 !important;
+  }
+
+  .gallery-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)) !important;
+    gap: 30px !important;
+    width: 100% !important;
+  }
+
+  .project-photo-card {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+    border: 1px solid #e6e0d4 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .img-frame {
+    width: 100% !important;
+    height: 240px !important;
+    background: #fdfbf7 !important;
+    overflow: hidden !important;
+  }
+
+  .img-frame img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .project-photo-card:hover .img-frame img {
+    transform: scale(1.03) !important;
+  }
+
+  .project-details {
+    padding: 20px !important;
+    text-align: left !important;
+  }
+
+  .project-details h3 {
+    margin: 0 0 8px 0 !important;
+    font-size: 1.25rem !important;
+    color: #2b1a11 !important;
+  }
+
+  .project-details p {
+    margin: 0 !important;
+    color: #666 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .action-btn-row {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 50px !important;
+  }
+
+  .reveal-gallery-btn {
+    background-color: #5c3b28 !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 16px 36px !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 15px rgba(92, 59, 40, 0.2) !important;
+    transition: background 0.2s ease !important;
+  }
+
+  .reveal-gallery-btn:hover {
+    background-color: #422a1c !important;
+  }
+
+  .plus-icon { margin-left: 5px; font-weight: bold; }
+
+  @media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: 1fr !important; }
+    .gallery-header h1 { font-size: 2rem !important; }
+    .reveal-gallery-btn { width: 100% !important; text-align: center !important; }
+  }
+
+  /* Add these right below your .btn-light style block */
+.no-results-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20pxrgba(0, 0, 0, 0.06);
+  max-width: 560px;
+  margin: 40px auto; 
+  padding: 45px 35px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.search-icon {
+  margin-bottom: 16px;
+}
+
+.no-results-card h2 {
+  font-family: sans-serif;
+  font-size: 22px;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.no-results-card p {
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #555555;
+  line-height: 1.6;
+  margin: 0 0 28px 0;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+</style>

@@ -1,0 +1,1021 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { contractors } from "../../data/contractors.js";
+
+export async function getStaticPaths() {
+  return contractors.map(contractor => ({
+    params: { slug: contractor.slug },
+    props: { contractor }
+  }));
+}
+
+const { contractor } = Astro.props;
+---
+
+<MainLayout title={`${contractor.name} | Verified Craftsman`}>
+  <div class="premium-profile-container">
+    
+    <!-- Elegant Navigation -->
+    <nav class="profile-nav">
+      <a href="/contractors" class="minimal-back-btn">
+        <svg xmlns="http://w3.org" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Directory
+      </a>
+      <span class="nav-sep">/</span>
+      <span class="nav-current">{contractor.name}</span>
+    </nav>
+
+    <!-- Unified Editorial Grid -->
+    <div class="editorial-grid">
+      
+      <!-- LEFT COLUMN: The Story & Profile -->
+      <main class="editorial-main">
+        <span class="editorial-eyebrow">Verified Amish Craftsman</span>
+        <h1 class="editorial-title">{contractor.name}</h1>
+        
+        <div class="editorial-location">
+          <svg xmlns="http://w3.org" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          {contractor.city ? `${contractor.city}, ` : ''}{contractor.state}
+        </div>
+
+        <!-- Clean Separated Service Chips -->
+        <div class="editorial-chips">
+          {contractor.service && contractor.service.split(',').map(s => (
+            <span class="service-chip">{s.trim()}</span>
+          ))}
+        </div>
+
+        <div class="editorial-divider"></div>
+
+        <p class="editorial-bio">
+          {contractor.description}
+        </p>
+
+        <!-- Premium Quick Contact Strip -->
+        <div class="editorial-contact-strip">
+  <div class="contact-box">
+    <span class="contact-label">Direct Phone Line</span>
+    <a href={`tel:${contractor.phone.replace(/[^0-9]/g, '')}`} class="btn-call-contractor">
+      <svg xmlns="http://w3.org" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>Call Contractor</span>
+    </a>
+  </div>
+          <div class="contact-box">
+            <span class="contact-label">Coverage Area</span>
+            <span class="contact-value-text">{contractor.state} Statewide</span>
+          </div>
+        </div>
+
+        <!-- PREMIUM REVIEWS FEED SECTION -->
+        <section class="reviews-section-panel">
+          <div class="reviews-header-row">
+            <div>
+              <h2 class="section-title">Customer Reviews</h2>
+              <div class="rating-summary-row">
+                <span class="star-rating-display">★★★★★</span>
+                <span class="rating-text-count">5.0 out of 5 (2 Reviews)</span>
+              </div>
+            </div>
+            <button type="button" id="openReviewModalBtn" class="btn-write-review">
+              Leave a Review
+            </button>
+          </div>
+
+          <div class="reviews-feed-list">
+            <div class="review-card-item">
+              <div class="review-meta-line">
+                <strong>Samuel K.</strong>
+                <span class="review-date-badge">Verified Client • June 2026</span>
+              </div>
+              <div class="review-stars">★★★★★</div>
+              <p class="review-comment-text">Outstanding structural execution. The team arrived exactly on time and finished our building layout ahead of schedule. Absolute traditional excellence.</p>
+            </div>
+
+            <div class="review-card-item">
+              <div class="review-meta-line">
+                <strong>Rebecca M.</strong>
+                <span class="review-date-badge">Verified Client • May 2026</span>
+              </div>
+              <div class="review-stars">★★★★★</div>
+              <p class="review-comment-text">Very honest communication and meticulous attention to detail. Highly recommend their craftsmanship services to anyone requiring durable installations.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+            <!-- RIGHT COLUMN: Estimate Form & Enhancify Financing Stacked Panel -->
+      <aside class="editorial-sidebar">
+        
+        <!-- 1. YOUR ORIGINAL ESTIMATE FORM (REMAINS EXACTLY THE SAME) -->
+        <div class="minimal-form-box">
+          <h2 class="form-heading">Book your Service</h2>
+          <p class="form-subheading">Send a direct inquiry regarding project scopes and scheduling availability.</p>
+          
+          <form class="clean-form">
+            <div class="form-row">
+              <div class="input-group">
+                <label>First Name</label>
+                <input type="text" placeholder="John" required />
+              </div>
+              <div class="input-group">
+                <label>Last Name</label>
+                <input type="text" placeholder="Doe" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="john@example.com" required />
+              </div>
+              <div class="input-group">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="(555) 000-0000" required />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label>Service Needed</label>
+              <div class="select-wrapper">
+                <select required>
+                  <option value="" disabled selected>Select a service...</option>
+                  {contractor.service && contractor.service.split(',').map(s => (
+                    <option value={s.trim().toLowerCase()}>{s.trim()}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label>Project Site Address</label>
+              <input type="text" placeholder="Street address, city, state" required />
+            </div>
+
+            <button type="submit" class="premium-submit-btn">
+              Send Book Request
+            </button>
+          </form>
+        </div>
+
+                <!-- 2. NEW ENHANCIFY PREMIUM WIDGET CONTAINER (BULLETPROOF DIRECT EMBED) -->
+                <!-- 2. PREMIUM BRANDED FINANCING DASHBOARD MODULE -->
+        <div class="minimal-form-box financing-box-margin">
+          <h2 class="form-heading">Project Financing</h2>
+          <p class="form-subheading">Crews prioritize projects with verified capital. Verify
+            up to $100,000 via Enhancify no credit impact to present a 'Funded' Status. 
+            Check customized lending availability, loan terms, and estimated monthly payments instantly through Enhancify.</p>
+          
+          <!-- Premium Branded CTA Area -->
+          <div class="custom-financing-action-block">
+            <div class="lenders-badge-row">
+              <span class="lender-chip">0% Promo APR Available</span>
+              <span class="lender-chip">550+ FICO Welcome</span>
+            </div>
+            
+            <!-- Secure Direct Navigation Link Portal Button -->
+            <a 
+              href="https://www.enhancify.com/amishcraftsmenconnection?utm_source=full_page_widget" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="custom-enhancify-btn"
+            >
+              <span>Apply for Financing</span>
+              <svg xmlns="http://w3.org" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            
+            <p class="secure-notice-text">🔒 Safe & Secure. Checking rates will not impact your credit score.</p>
+          </div>
+        </div>
+
+
+
+      </aside>
+
+
+    </div>
+  </div>
+
+  <!-- PREMIUM FLOATING MODAL INTERNALS CONTAINER (HIDDEN VIA FORCE INLINE RULES BY DEFAULT) -->
+  <div id="reviewModalWindow" class="modal-overlay-backdrop" style="display: none !important;">
+    <div class="modal-card-surface">
+      
+      <!-- Step 1 View: Contact Validation Form Panel -->
+      <div id="modalStep1" class="modal-step-view">
+        <div class="modal-header">
+          <h3>Verify Your Experience</h3>
+          <p>To ensure all ratings on our directory are authentic, please verify your details before posting.</p>
+        </div>
+        <div class="modal-form-body">
+          <div class="modal-input-group">
+            <label for="verifyEmail">Email Address</label>
+            <input type="email" id="verifyEmail" placeholder="you@example.com" />
+          </div>
+          <div class="modal-input-group">
+            <label for="verifyPhone">Phone Number</label>
+            <input type="tel" id="verifyPhone" placeholder="(555) 000-0000" />
+          </div>
+          <p id="verifyErrorLog" class="modal-error-message" style="display: none;">Please fill out both fields correctly to proceed.</p>
+          <div class="modal-actions-row">
+            <button type="button" id="closeModalBtn" class="btn-modal-cancel">Cancel</button>
+            <button type="button" id="submitVerifyBtn" class="btn-modal-primary">Next Step</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 View: Comments Data Fields Input Panel -->
+      <div id="modalStep2" class="modal-step-view" style="display: none;">
+        <div class="modal-header">
+          <h3>Write Your Review</h3>
+          <p>Sharing your honest project feedback helps other homeowners select premium contractors.</p>
+        </div>
+        <div class="modal-form-body">
+          <div class="modal-input-group">
+            <label for="ratingScoreSelect">Select Rating</label>
+            <div class="select-wrapper">
+              <select id="ratingScoreSelect">
+                <option value="5">★★★★★ (5 Stars)</option>
+                <option value="4">★★★★☆ (4 Stars)</option>
+                <option value="3">★★★☆☆ (3 Stars)</option>
+                <option value="2">★★☆☆☆ (2 Stars)</option>
+                <option value="1">★☆☆☆☆ (1 Star)</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-input-group">
+            <label for="reviewCommentInput">Your Detailed Comment</label>
+            <textarea id="reviewCommentInput" rows="4" placeholder="Describe the quality of work, cleanup, communication, and overall dependability..."></textarea>
+          </div>
+          <div class="modal-actions-row">
+            <button type="button" id="backToStep1Btn" class="btn-modal-cancel">Go Back</button>
+            <button type="button" id="publishReviewBtn" class="btn-modal-primary">Publish Review</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</MainLayout>
+
+<!-- BULLETPROOF INTERACTIVE CONTROLS SCRIPT ENGINE -->
+<script>
+  function initReviewEngine() {
+    const openBtn = document.getElementById('openReviewModalBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const modalWindow = document.getElementById('reviewModalWindow');
+    const nextBtn = document.getElementById('submitVerifyBtn');
+    const backBtn = document.getElementById('backToStep1Btn');
+    const publishBtn = document.getElementById('publishReviewBtn');
+    
+    const step1Panel = document.getElementById('modalStep1');
+    const step2Panel = document.getElementById('modalStep2');
+    const errorLog = document.getElementById('verifyErrorLog');
+    
+    const emailInput = document.getElementById('verifyEmail') as HTMLInputElement;
+    const phoneInput = document.getElementById('verifyPhone') as HTMLInputElement;
+    const ratingSelect = document.getElementById('ratingScoreSelect') as HTMLSelectElement;
+    const commentInput = document.getElementById('reviewCommentInput') as HTMLTextAreaElement;
+    const reviewsFeedList = document.querySelector('.reviews-feed-list');
+
+    // Dynamically fetch contractor slug from active path string
+    const currentSlug = window.location.pathname.split('/').pop() || 'default';
+    const storageKey = `reviews_${currentSlug}`;
+
+    if (!openBtn || !modalWindow || !reviewsFeedList) return;
+
+    // AUTOMATION STEP 1: Load saved reviews on load instantly
+    function loadLocalReviews() {
+      const saved = localStorage.getItem(storageKey);
+      if (!saved) return;
+
+      const items = JSON.parse(saved);
+      items.forEach((item: any) => {
+        renderReviewElement(item.name, item.stars, item.comment, item.date);
+      });
+      updateReviewHeaderCounter(items.length);
+    }
+
+    function renderReviewElement(name: string, starsCount: number, comment: string, dateStr: string) {
+      const starString = '★'.repeat(starsCount) + '☆'.repeat(5 - starsCount);
+      const cardHtml = document.createElement('div');
+      cardHtml.className = 'review-card-item custom-local-post';
+      cardHtml.innerHTML = `
+        <div class="review-meta-line">
+          <strong>${name}</strong>
+          <span class="review-date-badge">Verified Client • ${dateStr}</span>
+        </div>
+        <div class="review-stars">${starString}</div>
+        <p class="review-comment-text">${comment}</p>
+      `;
+      // Insert new reviews directly to the top of the feed list layout
+      reviewsFeedList!.insertBefore(cardHtml, reviewsFeedList!.firstChild);
+    }
+
+    function updateReviewHeaderCounter(customCount: number) {
+      const counterText = document.querySelector('.rating-text-count');
+      const baseTotal = 2 + customCount; // Accounts for your 2 core fallback hardcoded layout reviews
+      if (counterText) {
+        counterText.textContent = `5.0 out of 5 (${baseTotal} Reviews)`;
+      }
+    }
+
+    // Modal view window click triggers
+    openBtn.addEventListener('click', () => {
+      modalWindow.style.setProperty('display', 'flex', 'important');
+      step1Panel!.style.display = 'block';
+      step2Panel!.style.display = 'none';
+      errorLog!.style.display = 'none';
+    });
+
+    closeBtn?.addEventListener('click', () => {
+      modalWindow.style.setProperty('display', 'none', 'important');
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      if (!emailInput.value.trim() || !phoneInput.value.trim()) {
+        errorLog!.style.display = 'block';
+      } else {
+        errorLog!.style.display = 'none';
+        step1Panel!.style.display = 'none';
+        step2Panel!.style.display = 'block';
+      }
+    });
+
+    backBtn?.addEventListener('click', () => {
+      step2Panel!.style.display = 'none';
+      step1Panel!.style.display = 'block';
+    });
+
+    // AUTOMATION STEP 2: Intercept submit, save to storage, inject into HTML grid
+    publishBtn?.addEventListener('click', () => {
+      if (!commentInput.value.trim()) {
+        alert('Please provide a comment detail message row before publishing.');
+        return;
+      }
+
+      // Grab user parameters data models safely
+      const rawEmail = emailInput.value.trim();
+      const extractedName = rawEmail.split('@')[0];
+      const parsedName = extractedName.charAt(0).toUpperCase() + extractedName.slice(1);
+      
+      const ratingStarsValue = parseInt(ratingSelect.value) || 5;
+      const commentMessageText = commentInput.value.trim();
+      
+      const currentLocalDate = new Date();
+      const formattedDateLine = currentLocalDate.toLocaleDateString('en-US', {
+        month: 'long',
+        year: 'numeric'
+      });
+
+      // Construct storage payload package strings safely
+      const newReviewPayload = {
+        name: parsedName,
+        stars: ratingStarsValue,
+        comment: commentMessageText,
+        date: formattedDateLine
+      };
+
+      const existingData = localStorage.getItem(storageKey);
+      const reviewsArray = existingData ? JSON.parse(existingData) : [];
+      reviewsArray.push(newReviewPayload);
+      localStorage.setItem(storageKey, JSON.stringify(reviewsArray));
+
+      // Instantly inject layout block to screen viewport frame right away
+      renderReviewElement(parsedName, ratingStarsValue, commentMessageText, formattedDateLine);
+      updateReviewHeaderCounter(reviewsArray.length);
+
+      // Reset and clear local modal workspace text states fields
+      modalWindow.style.setProperty('display', 'none', 'important');
+      emailInput.value = '';
+      phoneInput.value = '';
+      commentInput.value = '';
+      ratingSelect.value = '5';
+    });
+
+    // Run active load calls
+    loadLocalReviews();
+  }
+
+  // Bind execution triggers perfectly matching dynamic view router engine frameworks
+  document.addEventListener('DOMContentLoaded', initReviewEngine);
+  document.addEventListener('astro:after-swap', initReviewEngine);
+</script>
+
+
+<style is:global>
+  /* EDITORIAL MAIN CONTAINMENTS */
+  .premium-profile-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 8rem 1.5rem 5rem 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  /*  NAVIGATION LINKS */
+  .profile-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 3.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .minimal-back-btn {
+    color: #8b5a2b;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+  }
+  .minimal-back-btn:hover {
+    color: #5c3a1a;
+  }
+  .nav-sep {
+    color: #dcd1c4;
+  }
+  .nav-current {
+    color: #7a6e65;
+  }
+
+  /* 🌟 DIRECTORY INTERNALS GRID */
+  .editorial-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4.5rem;
+    align-items: start;
+  }
+  @media (max-width: 960px) {
+    .editorial-grid {
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+    }
+  }
+
+  .editorial-main {
+    padding-right: 1rem;
+  }
+  .editorial-eyebrow {
+    color: #8b5a2b;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .editorial-title {
+    font-size: 2.75rem;
+    color: #1a1512;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.75rem 0;
+  }
+  .editorial-location {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #6a5e55;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .editorial-location svg {
+    color: #8b5a2b;
+  }
+  .editorial-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .service-chip {
+    background-color: #fdfbfa;
+    color: #8b5a2b;
+    border: 1px solid #ebdcd0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.65rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .editorial-divider {
+    height: 1px;
+    background-color: #f5ede6;
+    margin-bottom: 2rem;
+  }
+  .editorial-bio {
+    font-size: 1.1rem;
+    color: #3d352e;
+    line-height: 1.75;
+    margin: 0 0 3rem 0;
+  }
+  .editorial-contact-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    border-top: 1px solid #f5ede6;
+    padding-top: 2rem;
+  }
+  .contact-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .contact-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #8e8074;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .contact-value-link {
+    font-size: 1.15rem;
+    color: #8b5a2b;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .contact-value-link:hover {
+    color: #5c3a1a;
+    text-decoration: underline;
+  }
+  .contact-value-text {
+    font-size: 1.15rem;
+    color: #1a1512;
+    font-weight: 700;
+  }
+
+  /* 🌟 PREMIUM REVIEWS DESIGN MATRIX */
+  .reviews-section-panel {
+    border-top: 1px solid #f5ede6;
+    margin-top: 4rem;
+    padding-top: 3rem;
+  }
+  .reviews-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    gap: 1.5rem;
+  }
+  .section-title {
+    font-size: 1.6rem;
+    color: #1a1512;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+  }
+  .rating-summary-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .star-rating-display {
+    color: #8b5a2b;
+    font-size: 1.2rem;
+  }
+  .rating-text-count {
+    font-size: 0.95rem;
+    color: #6a5e55;
+    font-weight: 500;
+  }
+  .btn-write-review {
+    background-color: #fdfbfa;
+    color: #8b5a2b;
+    border: 1px solid #ebdcd0;
+    padding: 0.6rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .btn-write-review:hover {
+    background-color: #8b5a2b;
+    color: #ffffff;
+    border-color: #8b5a2b;
+  }
+  .reviews-feed-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .review-card-item {
+    background-color: #ffffff;
+    border: 1px solid #ebdcd0;
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .review-meta-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+  .review-meta-line strong {
+    color: #1a1512;
+  }
+  .review-date-badge {
+    color: #8e8074;
+  }
+  .review-stars {
+    color: #8b5a2b;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+  .review-comment-text {
+    margin: 0;
+    font-size: 1.02rem;
+    color: #4a3e35;
+    line-height: 1.6;
+  }
+
+  /* 🌟 ESTIMATION INTAKE FORMS */
+  .editorial-sidebar {
+    position: sticky;
+    top: 7rem;
+  }
+  .minimal-form-box {
+    background: #ffffff;
+    border: 1px solid #ebdcd0;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px -5px rgba(44, 37, 32, 0.02);
+  }
+  .form-heading {
+    font-size: 1.4rem;
+    color: #1a1512;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+  }
+  .form-subheading {
+    font-size: 0.9rem;
+    color: #6a5e55;
+    line-height: 1.4;
+    margin: 0 0 2rem 0;
+  }
+  .clean-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .input-group label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #2c2520;
+    text-transform: uppercase;
+  }
+  .input-group input,
+  .select-wrapper select,
+  .modal-input-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    border: 1px solid #ebdcd0;
+    border-radius: 6px;
+    color: #1a1512;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .input-group input:focus,
+  .select-wrapper select:focus,
+  .modal-input-group textarea:focus {
+    border-color: #8b5a2b;
+    box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.05);
+  }
+  .select-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  .select-wrapper select {
+    appearance: none;
+    padding-right: 2rem;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .select-wrapper::after {
+    content: "▼";
+    font-size: 0.65rem;
+    color: #8b5a2b;
+    position: absolute;
+    right: 1.15rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .premium-submit-btn {
+    width: 100%;
+    background-color: #1a1512;
+    color: #ffffff;
+    border: none;
+    padding: 0.95rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: all 0.15s ease;
+  }
+  .premium-submit-btn:hover {
+    background-color: #8b5a2b;
+    transform: translateY(-1px);
+  }
+
+  /* BULLETPROOF ABSOLUTE FULLSCREEN MODAL OVERLAY STYLING */
+  .modal-overlay-backdrop {
+    position: fixed !important; /* Forces it completely independent from grid containers */
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(26, 21, 18, 0.5) !important; /* Smooth transparent dark blur overlay shadow */
+    backdrop-filter: blur(10px) !important; /* Luxury deep high-end background asset blur */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999 !important; /* Locks it above all other elements */
+    box-sizing: border-box;
+  }
+  .modal-card-surface {
+    background-color: #ffffff !important;
+    border: 1px solid #ebdcd0 !important;
+    border-radius: 16px !important;
+    width: 100%;
+    max-width: 460px !important;
+    padding: 3rem 2.5rem !important;
+    box-shadow: 0 25px 60px rgba(26, 21, 18, 0.2) !important;
+    box-sizing: border-box !important;
+    position: relative;
+  }
+  .modal-header h3 {
+    font-size: 1.4rem;
+    color: #1a1512;
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .modal-header p {
+    font-size: 0.9rem;
+    color: #6a5e55;
+    line-height: 1.5;
+    margin: 0 0 1.75rem 0;
+  }
+  .modal-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+  .modal-input-group label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2c2520;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.modal-input-group input,
+.modal-input-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  background-color: #ffffff;
+  border: 1px solid #ebdcd0;
+  border-radius: 6px;
+  color: #1a1512;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.modal-input-group input:focus,
+.modal-input-group textarea:focus {
+  border-color: #8b5a2b;
+}
+
+.modal-error-message {
+  color: #b91c1c;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+}
+
+.modal-actions-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.25rem;
+  margin-top: 2rem;
+  border-top: 1px solid #f5ede6;
+  padding-top: 1.5rem;
+}
+
+.btn-modal-cancel {
+  background: transparent;
+  border: none;
+  color: #8e8074;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.btn-modal-cancel:hover {
+  color: #1a1512;
+}
+
+.btn-modal-primary {
+  background-color: #1a1512;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-modal-primary:hover {
+  background-color: #8b5a2b;
+}
+  /* Add this properties rule right inside your <style> panel */
+  .enhancify-widget-container {
+    width: 100%;
+    margin-top: 1.5rem;
+    display: block;
+    min-height: 80px; /* Provides layout safety fallback structure while script loads remote elements */
+  }
+
+  /*  CUSTOM DESIGNER FINANCING PORTAL BUTTON STYLING */
+  .financing-box-margin {
+    margin-top: 2rem;
+  }
+  .custom-financing-action-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .lenders-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .lender-chip {
+    background-color: #fdfbfa;
+    color: #8b5a2b;
+    border: 1px solid #ebdcd0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.55rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .custom-enhancify-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1c418c; /* Matches Enhancify's premium corporate deep blue primary color signature */
+    color: #ffffff !important;
+    text-decoration: none !important;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    box-shadow: 0 4px 14px rgba(28, 65, 140, 0.15);
+    transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .custom-enhancify-btn:hover {
+    background-color: #122b5e;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(28, 65, 140, 0.25);
+  }
+  .custom-enhancify-btn svg {
+    transition: transform 0.15s ease;
+  }
+  .custom-enhancify-btn:hover svg {
+    transform: translateX(4px);
+  }
+  .secure-notice-text {
+    margin: 0;
+    font-size: 0.78rem;
+    color: #8e8074;
+    text-align: center;
+    font-weight: 500;
+  }
+      /* 🌟 BULLETPROOF MULTI-CONTAINER VERTICAL MOBILE STACK ORDER RESET */
+  @media (max-width: 960px) {
+    /* 1. Dissolve outer grid container walls completely so elements sort natively */
+    .premium-profile-container,
+    .editorial-grid {
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    /* 2. Flatten element wrappers to treat the entire page as a single ordering track */
+    .premium-profile-container {
+      padding-top: 6rem !important;
+    }
+    .editorial-grid {
+      display: contents !important; /* This breaks open all HTML boxes on mobile */
+    }
+
+    /* 3. STACK STEP 1: Breadcrumb profile navigation links go at the very top */
+    .profile-nav {
+      order: 1 !important;
+      margin-bottom: 2rem !important;
+      width: 100% !important;
+    }
+
+    /* 4. STACK STEP 2: Contractor Biography & Phone line text block loads second */
+    .editorial-main {
+      order: 2 !important; /* Locks bio details directly below your header navigation */
+      padding-right: 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    /* 5. STACK STEP 3: Form booking panel & Enhancify buttons load third (BELOW BIO) */
+    .editorial-sidebar {
+      order: 3 !important; /* Forces booking inputs and financing chips directly below the biography */
+      position: static !important;
+      margin-top: 3rem !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    .financing-box-margin {
+      margin-top: 2rem !important;
+    }
+
+    /* 6. STACK STEP 4: Client feedback feed list panel loads fourth (ABSOLUTE BOTTOM) */
+    .reviews-section-panel {
+      order: 4 !important; /* Pushes customer comments completely to the footer of the phone screen */
+      margin-top: 4.5rem !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+  }
+.contact-box {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.contact-label {
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  color: #8c7d73 !important;
+  font-weight: 600 !important;
+}
+
+.btn-call-contractor {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  background-color: #2a1a12 !important; /* Matches your premium dark timber brown */
+  color: #ffffff !important;
+  text-decoration: none !important;
+  padding: 12px 24px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  width: fit-content !important;
+  transition: background-color 0.2s ease, transform 0.1s ease !important;
+  box-shadow: 0 4px 12px rgba(42, 26, 18, 0.08) !important;
+}
+
+.btn-call-contractor:hover {
+  background-color: #41291d !important;
+}
+
+.btn-call-contractor:active {
+  transform: scale(0.98) !important;
+}
+
+.btn-call-contractor svg {
+  flex-shrink: 0 !important;
+}
+
+
+
+
+</style>

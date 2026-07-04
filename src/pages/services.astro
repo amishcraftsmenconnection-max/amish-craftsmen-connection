@@ -1,0 +1,175 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+// This is your updated list of 13 clean services
+const services = [
+  "Home Builders",
+  "Roofers/Siding",
+  "Custom Cabinets",
+  "Decks",
+  "Fencing",
+  "Renovations",
+  "Logging",
+  "Pole Barns",
+  "Masonry",
+  "Sheds",
+  "Homegoods",
+  "Home Improvement",
+  "Insulation"
+];
+---
+
+<MainLayout title="Our Services">
+  <div class="services-container">
+    <!-- Premium Brand Header Section -->
+    <header class="page-header">
+      <p class="subtitle">Amish Craftsmen Connection</p>
+      <h1 class="title">Our Specialist Services</h1>
+      <div class="accent-line"></div>
+      <p class="description">
+        Explore high-quality, dependable structural and finishing services provided by master traditional Amish craftsmen.
+      </p>
+    </header>
+
+    <!-- Interactive Grid Layout (Replaces your plain ul list) -->
+    <div class="services-grid">
+      {services.map(service => {
+        // Formats your URLs to match your data file structure safely
+        const serviceUrl = service.toLowerCase().replaceAll(" ", "-").replaceAll("/", "-");
+        
+        return (
+          <a href={`/services/${serviceUrl}`} class="service-card">
+            <div class="card-icon">
+              <!-- Universal premium layout outline icon -->
+              <svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="card-content">
+              <h2 class="service-name">{service}</h2>
+              <span class="explore-link">
+                View Contractors
+                <svg xmlns="http://w3.org" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  /* Base Layout Styles */
+  .services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  /* Header Design Elements */
+  .page-header {
+    text-align: center;
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: -15px auto 4rem auto !important; /* Fixed navigation gap alignment */
+    padding: 60px 40px !important;
+    background-color: #2b1a11 !important; /* Matches your premium dark timber box background */
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 20px 40px rgba(43, 26, 17, 0.05) !important;
+  }
+  .subtitle {
+    color: #eebb88 !important; /* Changed to an elegant luxury gold variable accent for legibility */
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .title {
+    font-size: 2.75rem;
+    color: #ffffff !important; /* Inverted to clean white text color */
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+  }
+  .accent-line {
+    width: 60px;
+    height: 3px;
+    background-color: #eebb88 !important; /* Matches gold subtitle variable line asset */
+    margin: 0 auto 1.5rem auto;
+  }
+  .description {
+    color: #c4b5a4 !important; /* Changed to premium soft cream for comfortable reading text contrast */
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Premium Card Matrix Layout */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Interactive Service Card Components */
+  .service-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border: 1px solid #eaddd3;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-3px);
+    border-color: #8b5a2b;
+    box-shadow: 0 10px 15px -3px rgba(139, 90, 43, 0.1);
+  }
+
+  /* Graphic Card Accents */
+  .card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: #f7f4f0;
+    border-radius: 6px;
+    color: #8b5a2b;
+    flex-shrink: 0;
+  }
+
+  /* Text Elements Inside Cards */
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .service-name {
+    font-size: 1.15rem;
+    color: #2c2520;
+    margin: 0;
+    font-weight: 600;
+  }
+  .explore-link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+    color: #8b5a2b;
+    font-weight: 500;
+  }
+  .explore-link svg {
+    transition: transform 0.15s ease;
+  }
+  .service-card:hover .explore-link svg {
+    transform: translateX(3px);
+  }
+</style>

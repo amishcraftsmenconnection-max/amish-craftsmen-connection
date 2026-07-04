@@ -1,0 +1,198 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { blogs } from "../../data/blogs.js";
+
+// 1. Tell Astro which static pages to build based on your blog data slugs
+export async function getStaticPaths() {
+  return blogs.map(post => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+// 2. Grab the post data properties safely
+const { post } = Astro.props;
+---
+
+<MainLayout title={post.title}>
+  <article class="article-container">
+    <!-- Breadcrumb back navigation line -->
+    <a href="/blog" class="back-to-blog">
+      <svg xmlns="http://w3.org" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Chronicles
+    </a>
+
+    <!-- Premium Article Meta Banner Header -->
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="category-tag">{post.category}</span>
+        <span class="divider">•</span>
+        <span class="reading-time">{post.readingTime}</span>
+      </div>
+      <h1 class="article-title">{post.title}</h1>
+      
+      <div class="author-card-row">
+        <div class="author-avatar">
+          {post.author.charAt(0)}
+        </div>
+        <div class="author-details">
+          <p class="author-name">Written by {post.author}</p>
+          <p class="publish-date">Published on {post.date}</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-accent-line"></div>
+
+    <!-- Main Dynamic Article Body Paragraph Text Area -->
+    <div class="article-body">
+      <p class="lead-summary">
+        {post.summary}
+      </p>
+      
+      <!-- Placeholder content fields -->
+      <p>
+        Traditional Amish craft techniques have been passed down through generations, prioritizing longevity and structural integrity over speed. By using premium materials and tight joinery frameworks, these designs naturally endure the elements with minimal modern maintenance over decades of active service.
+      </p>
+      
+      <blockquote>
+        "True quality means building something once, the right way, so it stands proud for the generations that follow."
+      </blockquote>
+      
+      <p>
+        When planning your next property asset additions or structural extensions, collaborating with a dedicated traditional craftsman guarantees a standard of care, honesty, and execution that modern mass-production facilities simply cannot replicate.
+      </p>
+    </div>
+  </article>
+</MainLayout>
+
+<style>
+    /* Find this styling block around line 80 and update it: */
+  .article-container {
+    max-width: 740px; 
+    margin: 0 auto;
+    padding: 8rem 1.5rem 4rem 1.5rem; /* 🌟 Added 8rem top padding to push content below the nav bar */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  
+  .back-to-blog {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #8b5a2b;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    transition: color 0.15s ease;
+  }
+  .back-to-blog:hover {
+    color: #5c3a1a;
+  }
+
+  .article-header {
+    margin-bottom: 2rem;
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  .category-tag {
+    color: #8b5a2b;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .divider {
+    color: #eaddd3;
+  }
+  .reading-time {
+    color: #7a6e65;
+  }
+  
+  .article-title {
+    font-size: 2.5rem;
+    color: #2c2520;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 2rem 0;
+  }
+
+  /* Author Signature Row Elements */
+  .author-card-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #fdfbfa;
+    border: 1px solid #eaddd3;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    background-color: #8b5a2b;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  .author-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .author-name {
+    margin: 0;
+    font-weight: 600;
+    color: #2c2520;
+    font-size: 0.95rem;
+  }
+  .publish-date {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #7a6e65;
+  }
+
+  .article-accent-line {
+    height: 1px;
+    background-color: #eaddd3;
+    margin: 2.5rem 0;
+  }
+
+  /* Rich Text Typography Content Styles */
+  .article-body {
+    color: #2c2520;
+    font-size: 1.15rem;
+    line-height: 1.75;
+  }
+  .article-body p {
+    margin: 0 0 1.5rem 0;
+  }
+  .article-body .lead-summary {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #60554c;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+  
+  /* Blockquote Design Panel */
+  blockquote {
+    border-left: 4px solid #8b5a2b;
+    background-color: #f7f4f0;
+    margin: 2rem 0;
+    padding: 1.5rem 2rem;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #5c3a1a;
+    border-radius: 0 8px 8px 0;
+  }
+</style>

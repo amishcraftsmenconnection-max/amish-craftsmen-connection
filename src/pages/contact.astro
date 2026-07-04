@@ -1,0 +1,705 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Contact Us | Amish Craftsmen Connection">
+  <div class="luxury-contact-wrapper">
+    
+    <!-- ─── HERO INTRO HEADER ─── -->
+    <header class="luxury-hero-header">
+      <span class="luxury-badge">Amish Craftsmen Connection</span>
+      <h1>Let’s Coordinate Your Build</h1>
+      <p>Whether submitting custom structural specifications or requiring manual assistance, our central hub bridges the gap between old-world mastery and modern planning.</p>
+    </header>
+
+    <!-- ─── MAIN FORM CONTAINER ─── -->
+    <div class="luxury-grid-container">
+      
+      <!-- Left Sidebar: Direct Dispatch Details -->
+      <div class="luxury-info-sidebar">
+        <div class="sidebar-sticky-content">
+          <div class="brand-accent-line"></div>
+          <h2>Direct Project Coordination</h2>
+          <p class="sidebar-lead">Have an urgent project requirement or need manual scheduling intervention?</p>
+          
+          <div class="luxury-call-widget">
+            <span class="widget-label">Immediate Assistance</span>
+            <h3>Central Dispatch</h3>
+            <a href="tel:+18002660037" class="luxury-phone-link">
+              +1 800-266-0037
+              <svg xmlns="http://w3.org" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <p class="widget-note">Available Monday through Friday, 7 AM – 5 PM EST.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Premium Specification Form -->
+      <div class="luxury-form-panel">
+        <form id="premiumContactForm" class="luxury-form">
+          <div class="luxury-form-row">
+            <div class="luxury-input-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="e.g., Jonathan" required />
+            </div>
+            <div class="luxury-input-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" placeholder="e.g., Miller" required />
+            </div>
+          </div>
+
+          <div class="luxury-form-row">
+            <div class="luxury-input-group">
+              <label for="email">Corporate or Personal Email</label>
+              <input type="email" id="email" name="email" placeholder="name@domain.com" required />
+            </div>
+            <div class="luxury-input-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" required />
+            </div>
+          </div>
+
+          <div class="luxury-input-group">
+            <label for="address">Project Site Address</label>
+            <input type="text" id="address" name="address" placeholder="Street Address, City, State, ZIP" required />
+          </div>
+
+          <div class="luxury-input-group">
+            <label for="message">Project Scope & Specifications</label>
+            <textarea id="message" name="message" rows="6" placeholder="Please outline your structural goals, dimensions, timber preferences, or contractors you are attempting to locate..." required></textarea>
+          </div>
+
+          <button type="submit" class="luxury-submit-btn">
+            <span>Submit Specifications</span>
+            <div class="btn-arrow-icon">
+              <svg xmlns="http://w3.org" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </div>
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- ─── ACCORDION FAQ SECTION ─── -->
+    <section class="luxury-faq-section">
+      <div class="faq-grid-layout">
+        
+        <!-- Left Column Info Header -->
+        <div class="faq-sticky-header">
+          <span class="faq-section-badge">Project Insights</span>
+          <h2>Everything You Need to Know</h2>
+          <p>Explore the engineering, planning phases, and unmatched architectural advantages of partnering with traditional Amish craftsmen.</p>
+          <div class="faq-action-prompt">
+            <span>Still looking for answers?</span>
+            <a href="#premiumContactForm">Inquire Directly</a>
+          </div>
+        </div>
+
+        <!-- Right Column Accordions -->
+        <div class="faq-accordion-container">
+          
+          <!-- Accordion Item 1 -->
+          <div class="luxury-faq-item active">
+            <button type="button" class="luxury-faq-trigger" aria-expanded="true">
+              <span class="faq-item-number">01</span>
+              <span class="faq-item-title">What makes Amish-built structures fundamentally different from standard modern construction?</span>
+              <span class="luxury-icon-wrapper">
+                <span class="icon-line horizontal"></span>
+                <span class="icon-line vertical"></span>
+              </span>
+            </button>
+            <div class="luxury-faq-content">
+              <div class="content-inner">
+                <p>Amish craftsmanship is anchored in a multigenerational heritage of precision joinery, utilizing genuine structural timber framing and mortise-and-tenon construction. By hand-selecting architectural-grade lumber and avoiding fast, mass-production shortcuts, these structures offer immense load-bearing resilience, superior thermal integrity, and a lifespan measured in generations rather than decades.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 2 -->
+          <div class="luxury-faq-item">
+            <button type="button" class="luxury-faq-trigger" aria-expanded="false">
+              <span class="faq-item-number">02</span>
+              <span class="faq-item-title">Can I fully customize my architectural layout, or do you only execute template designs?</span>
+              <span class="luxury-icon-wrapper">
+                <span class="icon-line horizontal"></span>
+                <span class="icon-line vertical"></span>
+              </span>
+            </button>
+            <div class="luxury-faq-content">
+              <div class="content-inner">
+                <p>Every single commission is fully bespoke and engineered to order. While we maintain a premium portfolio of previous builds for inspiration, our master woodworkers specialize exclusively in built-to-suit configurations. From modified timber-frame barn layouts to custom structural remodeling footprints, every design is tailored to fit your specific land profile and aesthetic vision.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+</MainLayout>
+
+
+<script>
+  function initializeLuxuryAccordions() {
+    const faqItems = document.querySelectorAll(".luxury-faq-item");
+    
+    faqItems.forEach((item) => {
+      const trigger = item.querySelector(".luxury-faq-trigger");
+      const content = item.querySelector(".luxury-faq-content") as HTMLElement;
+      
+      if (!trigger || !content) return;
+
+      // Handle default open states smoothly on page mount
+      if (item.classList.contains("active")) {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } else {
+        content.style.maxHeight = "0px";
+      }
+
+      trigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isCurrentlyActive = item.classList.contains("active");
+
+        // Close all other instances for classic elegant accordion flow
+        faqItems.forEach((otherItem) => {
+          if (otherItem !== item) {
+            otherItem.classList.remove("active");
+            const otherTrigger = otherItem.querySelector(".luxury-faq-trigger");
+            const otherContent = otherItem.querySelector(".luxury-faq-content") as HTMLElement;
+            if (otherTrigger) otherTrigger.setAttribute("aria-expanded", "false");
+            if (otherContent) otherContent.style.maxHeight = "0px";
+          }
+        });
+
+        // Toggle state of current item
+        if (isCurrentlyActive) {
+          item.classList.remove("active");
+          trigger.setAttribute("aria-expanded", "false");
+          content.style.maxHeight = "0px";
+        } else {
+          item.classList.add("active");
+          trigger.setAttribute("aria-expanded", "true");
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    });
+  }
+
+  // Bind to lifecycle events
+  if (typeof window !== "undefined") {
+    initializeLuxuryAccordions();
+    document.addEventListener("astro:after-swap", initializeLuxuryAccordions);
+    
+    // Auto-update heights if window is resized while items are active
+    window.addEventListener("resize", () => {
+      document.querySelectorAll(".luxury-faq-item.active .luxury-faq-content").forEach((el) => {
+        (el as HTMLElement).style.maxHeight = el.scrollHeight + "px";
+      });
+    });
+  }
+</script>
+
+<style is:global>
+  /* ─── SYSTEM PREMIUM TOKENS ─── */
+  :root {
+    --color-timber-dark: #1e120c;
+    --color-timber-primary: #2a1a12;
+    --color-luxury-gold: #c5a47e;
+    --color-bg-cream: #fbf9f6;
+    --color-bg-white: #ffffff;
+    --color-text-muted: #6e6259;
+    --color-border-fine: #ebdccb;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* ─── MAIN LAYOUT WRAPPER ─── */
+  .luxury-contact-wrapper,
+  .luxury-contact-wrapper * {
+    box-sizing: border-box !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .luxury-contact-wrapper {
+    background-color: var(--color-bg-cream) !important;
+    font-family: var(--font-sans) !important;
+    color: var(--color-timber-primary) !important;
+    padding: 100px 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+  }
+
+ /* ─── HERO INTRO HEADER (FIXED FULL BRAND BANNER CARD) ─── */
+.luxury-hero-header {
+  text-align: center !important;
+  max-width: 1200px !important; /* Expanded to match grid container lines */
+  width: 100% !important;
+  margin: 40px auto 40px auto !important; 
+  padding: 60px 40px !important; /* Thick interior cell space padding */
+  background-color: #2b1a11 !important; /* Forced background match theme */
+  border-radius: 12px !important; /* Premium curved corner treatments */
+  box-sizing: border-box !important;
+  box-shadow: 0 20px 50px rgba(42, 26, 18, 0.04) !important;
+  margin-top: -70px !important; /* Pulls the header card slightly upward */
+  margin-bottom: 40px !important; /* Keeps a clean layout balance below it */
+}
+
+.luxury-badge {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.25em !important;
+  color: #eebb88 !important; /* Beautiful crisp premium gold variable */
+  display: block !important;
+  margin-bottom: 16px !important;
+}
+
+.luxury-hero-header h1 {
+  font-size: clamp(28px, 3.5vw, 42px) !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em !important;
+  color: #ffffff !important; /* Inverted to clean white for ultra-rich contrast */
+  margin: 0 0 16px 0 !important;
+  line-height: 1.3 !important;
+}
+
+.luxury-hero-header p {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: #c4b5a4 !important; /* Adjusted to soft readable contrast cream text tint */
+  max-width: 700px !important;
+  margin: 0 auto !important;
+}
+
+
+  /* ─── MAIN CONTAINER GRID ─── */
+  .luxury-grid-container {
+    background: var(--color-bg-white) !important;
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    border: 1px solid var(--color-border-fine) !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1.5fr !important;
+    box-shadow: 0 40px 80px rgba(42, 26, 18, 0.05) !important;
+    overflow: hidden !important;
+  }
+
+  @media (max-width: 991px) {
+    .luxury-grid-container {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* ─── SIDEBAR PANEL ─── */
+  .luxury-info-sidebar {
+    background: var(--color-timber-dark) !important;
+    color: var(--color-bg-white) !important;
+    padding: 60px 48px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+  }
+
+  .brand-accent-line {
+    width: 40px !important;
+    height: 2px !important;
+    background: var(--color-luxury-gold) !important;
+    margin-bottom: 24px !important;
+  }
+
+  .luxury-info-sidebar h2 {
+    font-size: 28px !important;
+    font-weight: 400 !important;
+    line-height: 1.3 !important;
+    margin-bottom: 16px !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  .sidebar-lead {
+    color: #c4b6ae !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 40px !important;
+  }
+
+  .luxury-call-widget {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-top: 32px !important;
+    margin-top: auto !important;
+  }
+
+  .widget-label {
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    color: var(--color-luxury-gold) !important;
+    display: block !important;
+    margin-bottom: 8px !important;
+  }
+
+  .luxury-call-widget h3 {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    margin-bottom: 8px !important;
+    color: #e6ded7 !important;
+  }
+
+  .luxury-phone-link {
+    color: var(--color-bg-white) !important;
+    text-decoration: none !important;
+    font-size: 24px !important;
+    font-weight: 300 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: color 0.3s ease !important;
+  }
+
+  .luxury-phone-link svg {
+    color: var(--color-luxury-gold) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .luxury-phone-link:hover {
+    color: var(--color-luxury-gold) !important;
+  }
+
+  .luxury-phone-link:hover svg {
+    transform: translateX(4px) !important;
+  }
+
+  .widget-note {
+    font-size: 12px !important;
+    color: #8c7d73 !important;
+    margin-top: 12px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* ─── FORM PANEL ─── */
+  .luxury-form-panel {
+    padding: 60px !important;
+    background: var(--color-bg-white) !important;
+  }
+
+  @media (max-width: 768px) {
+    .luxury-info-sidebar,
+    .luxury-form-panel {
+      padding: 40px 24px !important;
+    }
+  }
+
+  .luxury-form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 40px !important; /* Enhanced spacing between sections */
+  }
+
+  .luxury-form-row {
+    display: flex !important;
+    gap: 40px !important;
+    width: 100% !important;
+  }
+
+  @media (max-width: 600px) {
+    .luxury-form-row {
+      flex-direction: column !important;
+      gap: 40px !important;
+    }
+  }
+
+  /* Custom Input Groups */
+  .luxury-input-group {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    width: 100% !important;
+  }
+
+  .luxury-input-group label {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    color: var(--color-timber-dark) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    margin-bottom: 4px !important;
+  }
+
+  .luxury-input-group input,
+  .luxury-input-group textarea {
+    width: 100% !important;
+    padding: 12px 4px !important; /* Perfect inner spacing */
+    border: none !important;
+    border-bottom: 1px solid var(--color-border-fine) !important;
+    background-color: transparent !important;
+    font-size: 15px !important;
+    color: var(--color-timber-primary) !important;
+    outline: none !important;
+    transition: border-color 0.3s ease, background-color 0.3s ease !important;
+    border-radius: 0px !important;
+    line-height: 1.5 !important;
+  }
+
+  .luxury-input-group input:focus,
+  .luxury-input-group textarea:focus {
+    border-bottom-color: var(--color-timber-dark) !important;
+    background-color: #fbfbf9 !important; /* High-end subtle feedback tint */
+  }
+
+  .luxury-input-group textarea {
+    resize: vertical !important;
+  }
+
+  .luxury-submit-btn {
+    background: var(--color-timber-primary) !important;
+    color: var(--color-bg-white) !important;
+    border: none !important;
+    padding: 18px 36px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2em !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    transition: background-color 0.3s ease !important;
+    margin-top: 12px !important;
+    width: 100% !important;
+  }
+
+  .luxury-submit-btn:hover {
+    background: var(--color-timber-dark) !important;
+  }
+
+  .btn-arrow-icon {
+    display: flex !important;
+    align-items: center !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .luxury-submit-btn:hover .btn-arrow-icon {
+    transform: translateX(4px) !important;
+  }
+
+ /* ─── COMPACT REFINED ACCORDION FAQ SECTION ─── */
+.luxury-faq-section {
+  max-width: 960px !important; /* Strips runaway width stretching entirely */
+  width: 100% !important;
+  margin: 40px auto 0 auto !important;
+  border-top: 1px solid var(--color-border-fine) !important;
+  padding: 40px 16px 0 16px !important; /* Tightened compact padding bounds */
+}
+
+.faq-grid-layout {
+  display: grid !important;
+  grid-template-columns: 1fr 1.4fr !important;
+  gap: 40px !important;
+  width: 100% !important;
+}
+
+@media (max-width: 991px) {
+  .faq-grid-layout {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+.faq-sticky-header {
+  position: sticky !important;
+  top: 24px !important;
+  height: fit-content !important;
+}
+
+@media (max-width: 991px) {
+  .faq-sticky-header {
+    position: relative !important;
+    top: 0 !important;
+  }
+}
+
+.faq-section-badge {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  color: var(--color-luxury-gold) !important;
+  display: block !important;
+  margin-bottom: 8px !important;
+}
+
+.faq-sticky-header h2 {
+  font-size: clamp(20px, 3.5vw, 26px) !important; /* Clean downscaled typography rule */
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+  color: var(--color-timber-dark) !important;
+  margin-bottom: 12px !important;
+  line-height: 1.2 !important;
+}
+
+.faq-sticky-header p {
+  color: var(--color-text-muted) !important;
+  font-size: 13px !important; /* Stripped heavy zoomed text weights */
+  line-height: 1.5 !important;
+  margin-bottom: 16px !important;
+}
+
+.faq-action-prompt {
+  font-size: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+}
+
+.faq-action-prompt span {
+  color: var(--color-text-muted) !important;
+}
+
+.faq-action-prompt a {
+  color: var(--color-timber-dark) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid var(--color-timber-dark) !important;
+  padding-bottom: 1px !important;
+  transition: all 0.2s ease !important;
+}
+
+.faq-action-prompt a:hover {
+  color: var(--color-luxury-gold) !important;
+  border-bottom-color: var(--color-luxury-gold) !important;
+}
+
+/* Accordion Custom Framework */
+.faq-accordion-container {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+.luxury-faq-item {
+  border-bottom: 1px solid var(--color-border-fine) !important;
+  transition: border-color 0.3s ease !important;
+  width: 100% !important;
+}
+
+.luxury-faq-item:first-child {
+  border-top: 1px solid var(--color-border-fine) !important;
+}
+
+.faq-item-number {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: var(--color-luxury-gold) !important;
+  margin-top: 2px !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.luxury-faq-trigger {
+  background: none !important;
+  border: none !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  padding: 18px 0px !important; 
+  cursor: pointer !important;
+  text-align: left !important;
+  gap: 12px !important;
+  position: relative !important; /* 🌟 Critical for icon clearance containment */
+}
+
+.faq-item-title {
+  font-size: clamp(14px, 2.5vw, 15px) !important;
+  font-weight: 500 !important;
+  color: var(--color-timber-dark) !important;
+  line-height: 1.4 !important;
+  flex-grow: 1 !important;
+  transition: color 0.2s ease !important;
+  padding-right: 32px !important; /* 🌟 Creates safety clearance room so text never pushes icons */
+}
+
+/* Elegant Plus/Minus Icon Toggle Mechanics */
+.luxury-icon-wrapper {
+  position: absolute !important; /* 🌟 Anchors the button crisp on the right margin corner */
+  right: 4px !important;
+  top: 22px !important;
+  width: 12px !important;
+  height: 12px !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+
+.luxury-faq-item:hover .faq-item-title {
+  color: var(--color-luxury-gold) !important;
+}
+
+/* Elegant Plus/Minus Icon Toggle Mechanics */
+.luxury-icon-wrapper {
+  position: relative !important;
+  width: 12px !important;
+  height: 12px !important;
+  margin-top: 4px !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+.icon-line {
+  position: absolute !important;
+  background-color: var(--color-timber-primary) !important;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease !important;
+}
+
+.icon-line.horizontal {
+  width: 100% !important;
+  height: 1px !important;
+  top: 50% !important;
+  left: 0 !important;
+  transform: translateY(-50%) !important;
+}
+
+.icon-line.vertical {
+  width: 1px !important;
+  height: 100% !important;
+  left: 50% !important;
+  top: 0 !important;
+  transform: translateX(-50%) !important;
+}
+
+.luxury-faq-item.active .icon-line.vertical {
+  transform: translateX(-50%) scaleY(0) !important;
+}
+
+.luxury-faq-item.active .icon-line.horizontal {
+  background-color: var(--color-luxury-gold) !important;
+}
+
+/* Dynamic Animation Panels Calculation Layout */
+.luxury-faq-content {
+  max-height: 0;
+  overflow: hidden !important;
+  transition: max-height 0.3s ease-out !important;
+  width: 100% !important;
+}
+
+.content-inner {
+  padding-bottom: 16px !important;
+  padding-left: 24px !important; /* Snaps text flow directly beneath headers */
+  max-width: 100% !important;
+}
+
+.content-inner p {
+  color: var(--color-text-muted) !important;
+  font-size: 13px !important; /* Balanced, small luxury description sizing */
+  line-height: 1.5 !important;
+}
+
+
+
+</style>

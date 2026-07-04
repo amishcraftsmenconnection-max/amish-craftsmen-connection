@@ -1,0 +1,60 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { contractors } from "../../data/contractors.js";
+
+export async function getStaticPaths() {
+
+const states = [
+...new Set(
+contractors.map(c => c.state)
+)
+];
+
+return states.map(state => ({
+params: {
+state: state.toLowerCase()
+}
+}));
+
+}
+
+const { state } = Astro.params;
+
+const filtered = contractors.filter(
+contractor =>
+contractor.state.toLowerCase() === state
+);
+---
+
+<MainLayout title={state}>
+
+<h1>{state.toUpperCase()} Contractors</h1>
+
+{
+filtered.map(contractor => (
+
+<div class="card">
+
+<h2>
+<a href={`/contractors/${contractor.slug}`}>
+{contractor.name}
+</a>
+</h2>
+
+<p>{contractor.service}</p>
+
+</div>
+
+))
+}
+
+</MainLayout>
+
+<style>
+.card{
+background:white;
+padding:20px;
+margin-bottom:20px;
+border-radius:10px;
+}
+</style>

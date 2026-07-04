@@ -1,0 +1,1769 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Amish Craftsmen Connection | Find Trusted Builders">
+
+  <!-- HERO SECTION WITH CENTERED SEARCH CONTROLS -->
+  <section class="acc-hero">
+    <div class="acc-hero-overlay"></div>
+    <div class="acc-hero-content">
+      <div class="acc-eyebrow">Amish Craftsmen &middot; 30 States</div>
+      <h1 class="acc-hero-title">Built by <em>hand.</em><br>Trusted by thousands.</h1>
+      <p class="acc-hero-sub">Connect with skilled Amish builders, roofers, remodelers, and craftsmen who bring generations of woodworking tradition to your home.</p> 
+
+      <!-- TWO SELECTORS - STATE AND SERVICE TOGETHER -->
+      <div class="search-box">
+        <select name="state" id="stateSelector">
+          <option value="">Select State</option>
+          <option value="Alabama">Alabama</option>
+          <option value="Arkansas">Arkansas</option>
+          <option value="Colorado">Colorado</option>
+          <option value="Delaware">Delaware</option>
+          <option value="Florida">Florida</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Illinois">Illinois</option>
+          <option value="Indiana">Indiana</option>
+          <option value="Iowa">Iowa</option>
+          <option value="Kansas">Kansas</option>
+          <option value="Kentucky">Kentucky</option>
+          <option value="Maine">Maine</option>
+          <option value="Maryland">Maryland</option>
+          <option value="Michigan">Michigan</option>
+          <option value="Minnesota">Minnesota</option>
+          <option value="Missouri">Missouri</option>
+          <option value="Nebraska">Nebraska</option>
+          <option value="New Jersey">New Jersey</option>
+          <option value="New York">New York</option>
+          <option value="North Carolina">North Carolina</option>
+          <option value="Ohio">Ohio</option>
+          <option value="Oklahoma">Oklahoma</option>
+          <option value="Pennsylvania">Pennsylvania</option>
+          <option value="South Carolina">South Carolina</option>
+          <option value="Tennessee">Tennessee</option>
+          <option value="Texas">Texas</option>
+          <option value="Vermont">Vermont</option>
+          <option value="Virginia">Virginia</option>
+          <option value="West Virginia">West Virginia</option>
+          <option value="Wisconsin">Wisconsin</option>
+        </select>
+
+        <select name="service" id="serviceSelector">
+          <option value="">Select Service</option>
+          <option value="Home Builders">Home Builders</option>
+          <option value="Roofers/Siding">Roofers/Siding</option>
+          <option value="Custom Cabinets">Custom Cabinets</option>
+          <option value="Decks">Decks</option>
+          <option value="Fencing">Fencing</option>
+          <option value="Renovations">Renovations</option>
+          <option value="Logging">Logging</option>
+          <option value="Pole Barns">Pole Barns</option>
+          <option value="Masonry">Masonry</option>
+          <option value="Sheds">Sheds</option>
+          <option value="Homegoods">Homegoods</option>
+          <option value="Home Improvement">Home Improvement</option>
+          <option value="Insulation">Insulation</option>
+        </select>
+
+        <button type="button" id="openModalBtn">
+          Find Contractors
+        </button>
+      </div>
+
+      <div class="acc-stats">
+        <div class="acc-stat"><span class="acc-stat-num">50+</span><span class="acc-stat-lbl">Verified Craftsmen</span></div>
+        <div class="acc-stat"><span class="acc-stat-num">30</span><span class="acc-stat-lbl">States Covered</span></div>
+        <div class="acc-stat"><span class="acc-stat-num">4.9★</span><span class="acc-stat-lbl">Avg Rating</span></div>
+      </div>
+    </div>
+  </section>
+
+<!-- EXPANDED 13 MULTI-SERVICE GRID SECTION -->
+  <section class="services-directory-section">
+    <div class="directory-container">
+      
+      <div class="directory-header">
+        <span class="directory-eyebrow">OUR MASTER CRAFTSMEN</span>
+        <h2 class="directory-title">Generations of skill,<br>built into every project</h2>
+        <p class="directory-subtitle">Browse through our comprehensive directory of verified Amish Craftsmen specializing in premium, time-tested structural work.</p>
+      </div>
+
+      <div class="services-directory-grid">
+        
+        <a href="/gallery/home-builders" class="service-photo-card" style="background-image: linear-gradient(rgba(43,26,17,0.4), rgba(43,26,17,0.85)), url('/images/home-builders.jpg');">
+          <div class="service-card-meta">
+            <span class="service-card-icon">🏠</span>
+            <h3>Home Builders</h3>
+          </div>
+          <span class="service-card-badge">New Construction</span>
+        </a>
+
+        <a href="/gallery/roofers-siding" class="service-photo-card" style="background-image: linear-gradient(rgba(43,26,17,0.4), rgba(43,26,17,0.85)), url('/images/roofers-siding.jpg');">
+          <div class="service-card-meta">
+            <span class="service-card-icon">🛠️</span>
+            <h3>Roofers/Siding</h3>
+          </div>
+          <span class="service-card-badge">Exterior Work</span>
+        </a>
+
+        <a href="/gallery/custom-cabinets" class="service-photo-card" style="background-image: linear-gradient(rgba(43,26,17,0.4), rgba(43,26,17,0.85)), url('/images/custom-cabinets.jpg');">
+          <div class="service-card-meta">
+            <span class="service-card-icon">🪑</span>
+            <h3>Custom Cabinets</h3>
+          </div>
+          <span class="service-card-badge">Woodworking</span>
+        </a>
+
+        <a href="/gallery/decks" class="service-photo-card" style="background-image: linear-gradient(rgba(43,26,17,0.4), rgba(43,26,17,0.85)), url('/images/decks.jpg');">
+          <div class="service-card-meta">
+            <span class="service-card-icon">🪵</span>
+            <h3>Decks</h3>
+          </div>
+          <span class="service-card-badge">Outdoor Living</span>
+        </a>
+
+        <a href="/gallery/fencing" class="service-photo-card" style="background-image: linear-gradient(rgba(43,26,17,0.4), rgba(43,26,17,0.85)), url('/images/fencing.jpg');">
+          <div class="service-card-meta">
+            <span class="service-card-icon">🚧</span>
+            <h3>Fencing</h3>
+          </div>
+          <span class="service-card-badge">Property Line</span>
+        </a>
+
+        <a href="/gallery/renovations" class="service-photo-card" style="background-image: linear-gradient(rgba(43,26,17,0.4), rgba(43,26,17,0.85)), url('/images/renovations.jpg');">
+          <div class="service-card-meta">
+            <span class="service-card-icon">🔄</span>
+            <h3>Renovations</h3>
+          </div>
+          <span class="service-card-badge">Remodeling</span>
+        </a>
+
+        <a href="/gallery/logging" class="service-photo-card" style="background-image: linear-gradient(rgba(43,26,17,0.4), rgba(43,26,17,0.85)), url('/images/logging.jpg');">
+          <div class="service-card-meta">
+            <span class="service-card-icon">🪓</span>
+            <h3>Logging</h3>
+          </div>
+          <span class="service-card-badge">Forestry</span>
+        </a>
+
+        <a href="/gallery/pole-barns" class="service-photo-card" style="background-image: linear-gradient(rgba(43,26,17,0.4), rgba(43,26,17,0.85)), url('/images/pole-barns.jpg');">
+          <div class="service-card-meta">
+            <span class="service-card-icon">🔨</span>
+            <h3>Pole Barns</h3>
+          </div>
+          <span class="service-card-badge">Agricultural</span>
+        </a>
+
+        <a href="/gallery/masonry" class="service-photo-card" style="background-image: linear-gradient(rgba(43,26,17,0.4), rgba(43,26,17,0.85)), url('/images/masonry.jpg');">
+          <div class="service-card-meta">
+            <span class="service-card-icon">🧱</span>
+            <h3>Masonry</h3>
+          </div>
+          <span class="service-card-badge">Brick &amp; Stone</span>
+        </a>
+
+        <a href="/gallery/sheds" class="service-photo-card" style="background-image: linear-gradient(rgba(43,26,17,0.4), rgba(43,26,17,0.85)), url('/images/sheds.jpg');">
+          <div class="service-card-meta">
+            <span class="service-card-icon">🏡</span>
+            <h3>Sheds</h3>
+          </div>
+          <span class="service-card-badge">Storage</span>
+        </a>
+
+        <a href="/gallery/homegoods" class="service-photo-card" style="background-image: linear-gradient(rgba(43,26,17,0.4), rgba(43,26,17,0.85)), url('/images/homegoods.jpg');">
+          <div class="service-card-meta">
+            <span class="service-card-icon">🧺</span>
+            <h3>Homegoods</h3>
+          </div>
+          <span class="service-card-badge">Handcrafted</span>
+        </a>
+
+        <a href="/gallery/home-improvement" class="service-photo-card" style="background-image: linear-gradient(rgba(43,26,17,0.4), rgba(43,26,17,0.85)), url('/images/home-improvement.jpg');">
+          <div class="service-card-meta">
+            <span class="service-card-icon">📐</span>
+            <h3>Home Improvement</h3>
+          </div>
+          <span class="service-card-badge">General Trim</span>
+        </a>
+
+        <a href="/gallery/insulation" class="service-photo-card" style="background-image: linear-gradient(rgba(43,26,17,0.4), rgba(43,26,17,0.85)), url('/images/insulation.jpg');">
+          <div class="service-card-meta">
+            <span class="service-card-icon">❄️</span>
+            <h3>Insulation</h3>
+          </div>
+          <span class="service-card-badge">Energy Saving</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+<!-- ══════════════════════════════
+     TESTIMONIALS
+══════════════════════════════ -->
+<section class="acc-section acc-testi-section">
+  <div class="acc-inner">
+    <div class="acc-section-label">What Homeowners Say</div>
+    <h2 class="acc-section-title">Real stories, real results</h2>
+    <div class="acc-testi-grid">
+      <div class="acc-testi-card">
+        <div class="acc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="acc-testi-text">"The crew that showed up was phenomenal. They built our entire deck in two days — clean, precise, beautiful. I've never seen anyone work that hard."</p>
+        <div class="acc-author">
+          <div class="acc-avatar">MR</div>
+          <div>
+            <span class="acc-author-name">Mark R.</span>
+            <span class="acc-author-loc">Lancaster, Pennsylvania</span>
+          </div>
+        </div>
+      </div>
+      <div class="acc-testi-card">
+        <div class="acc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="acc-testi-text">"Hired an Amish roofing crew through this site. Half the cost of local contractors, twice the quality. My neighbors have already asked for the number."</p>
+        <div class="acc-author">
+          <div class="acc-avatar">SL</div>
+          <div>
+            <span class="acc-author-name">Sandra L.</span>
+            <span class="acc-author-loc">Columbus, Ohio</span>
+          </div>
+        </div>
+      </div>
+      <div class="acc-testi-card">
+        <div class="acc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="acc-testi-text">"Custom kitchen cabinets that look like they belong in a museum. The craftsmanship is beyond anything we've seen from mainstream contractors."</p>
+        <div class="acc-author">
+          <div class="acc-avatar">JT</div>
+          <div>
+            <span class="acc-author-name">James T.</span>
+            <span class="acc-author-loc">Louisville, Kentucky</span>
+          </div>
+        </div>
+      </div>
+      <div class="acc-testi-card">
+        <div class="acc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="acc-testi-text">"Fast, respectful, and incredibly skilled. Our barn rebuild was done in a week. These guys are the real deal — I'll never use anyone else."</p>
+        <div class="acc-author">
+          <div class="acc-avatar">CW</div>
+          <div>
+            <span class="acc-author-name">Carol W.</span>
+            <span class="acc-author-loc">Shipshewana, Indiana</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- LEAD CAPTURE POPUP MODAL -->
+  <div class="modal-overlay" id="leadModal">
+    <div class="modal-window">
+      <h2>Unlock Contractor Results</h2>
+      <p>Please enter your contact details to instantly reveal trusted local craftsmen matching your area criteria.</p>
+      
+      <form id="leadCaptureForm" action="/search" method="GET">
+        <!-- BOTH PASSER INPUT FIELDS MUST LIVE HERE -->
+        <input type="hidden" name="state" id="hiddenStateInput" value="" />
+        <input type="hidden" name="service" id="hiddenServiceInput" value="" />
+
+        <div class="input-field-group">
+          <label for="userName">Full Name</label>
+          <input type="text" id="userName" name="name" placeholder="John Doe" required />
+        </div>
+        <div class="input-field-group">
+          <label for="userEmail">Email Address</label>
+          <input type="email" id="userEmail" name="email" placeholder="john@example.com" required />
+        </div>
+        <div class="input-field-group">
+          <label for="userPhone">Phone Number</label>
+          <input type="tel" id="userPhone" name="phone" placeholder="(555) 555-5555" required />
+        </div>
+        <div class="modal-actions-row">
+          <button type="button" class="btn-cancel" id="closeModalBtn">Cancel</button>
+          <button type="submit" class="btn-submit">Reveal Results</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── HERO INTRO HEADER ─── -->
+    <header class="luxury-hero-header">
+      <span class="luxury-badge">Amish Craftsmen Connection</span>
+      <h1>Let’s Coordinate Your Build</h1>
+      <p>Whether submitting custom structural specifications or requiring manual assistance, our central hub bridges the gap between old-world mastery and modern planning.</p>
+    </header>
+
+    <!-- ─── MAIN FORM CONTAINER ─── -->
+    <div class="luxury-grid-container">
+      
+      <!-- Left Sidebar: Direct Dispatch Details -->
+      <div class="luxury-info-sidebar">
+        <div class="sidebar-sticky-content">
+          <div class="brand-accent-line"></div>
+          <h2>Direct Project Coordination</h2>
+          <p class="sidebar-lead">Have an urgent project requirement or need manual scheduling intervention?</p>
+          
+          <div class="luxury-call-widget">
+            <span class="widget-label">Immediate Assistance</span>
+            <h3>Central Dispatch</h3>
+            <a href="tel:+18002660037" class="luxury-phone-link">
+              +1 800-266-0037
+              <svg xmlns="http://w3.org" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <p class="widget-note">Available Monday through Friday, 7 AM – 5 PM EST.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Premium Specification Form -->
+      <div class="luxury-form-panel">
+        <form id="premiumContactForm" class="luxury-form">
+          <div class="luxury-form-row">
+            <div class="luxury-input-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="e.g., Jonathan" required />
+            </div>
+            <div class="luxury-input-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" placeholder="e.g., Miller" required />
+            </div>
+          </div>
+
+          <div class="luxury-form-row">
+            <div class="luxury-input-group">
+              <label for="email">Corporate or Personal Email</label>
+              <input type="email" id="email" name="email" placeholder="name@domain.com" required />
+            </div>
+            <div class="luxury-input-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" required />
+            </div>
+          </div>
+
+          <div class="luxury-input-group">
+            <label for="address">Project Site Address</label>
+            <input type="text" id="address" name="address" placeholder="Street Address, City, State, ZIP" required />
+          </div>
+
+          <div class="luxury-input-group">
+            <label for="message">Project Scope & Specifications</label>
+            <textarea id="message" name="message" rows="6" placeholder="Please outline your structural goals, dimensions, timber preferences, or contractors you are attempting to locate..." required></textarea>
+          </div>
+
+          <button type="submit" class="luxury-submit-btn">
+            <span>Submit Specifications</span>
+            <div class="btn-arrow-icon">
+              <svg xmlns="http://w3.org" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </div>
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+<!-- PREMIUM COVERAGE MODULE -->
+<section class="map-dashboard-section">
+  <div class="map-dashboard-container">
+    
+    <!-- LEFT SIDE: DYNAMIC ACTION PANEL -->
+    <div class="map-info-panel">
+      <span class="panel-badge">Nationwide Footprint</span>
+      <h2>Our Active Building Zones</h2>
+      <p>We actively operate across 30 states. Select your region on the interactive grid map to view certified Amish framing crews, master roofers, and timber artisans currently dispatched in your territory.</p>
+      
+      <div class="coverage-metrics">
+        <div class="metric-node">
+          <strong>30</strong>
+          <span>States Active</span>
+        </div>
+        <div class="metric-node">
+          <strong>50+</strong>
+          <span>Craftsmen Verified</span>
+        </div>
+      </div>
+      
+      <a href="/contractors" class="map-action-btn">
+        Browse Regional Directory
+        <svg xmlns="http://w3.org" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12,5 19,12 12,19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <!-- RIGHT SIDE: INTERACTIVE CANVAS MOUNT -->
+    <div class="map-canvas-container">
+      <div class="map-canvas-frame">
+  <!-- INTERACTIVE HIGH-CONTRAST OPEN-SOURCE MAP DASHBOARD -->
+  <iframe 
+    width="100%" 
+    height="100%" 
+    style="border: 0; filter: grayscale(1) invert(0.92) contrast(1.25) brightness(0.9);"
+    src="https://openstreetmap.org"
+    loading="lazy"
+    title="Amish Craftsmen Connection Regional Coverage Map">
+  </iframe>
+</div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+    
+    <!-- ─── ACCORDION FAQ SECTION ─── -->
+    <section class="luxury-faq-section">
+      <div class="faq-grid-layout">
+        
+        <!-- Left Column Info Header -->
+        <div class="faq-sticky-header">
+          <span class="faq-section-badge">Project Insights</span>
+          <h2>Everything You Need to Know</h2>
+          <p>Explore the engineering, planning phases, and unmatched architectural advantages of partnering with traditional Amish craftsmen.</p>
+          <div class="faq-action-prompt">
+            <span>Still looking for answers?</span>
+            <a href="#premiumContactForm">Inquire Directly</a>
+          </div>
+        </div>
+
+        <!-- Right Column Accordions -->
+        <div class="faq-accordion-container">
+          
+          <!-- Accordion Item 1 -->
+          <div class="luxury-faq-item active">
+            <button type="button" class="luxury-faq-trigger" aria-expanded="true">
+              <span class="faq-item-number">01</span>
+              <span class="faq-item-title">What makes Amish-built structures fundamentally different from standard modern construction?</span>
+              <span class="luxury-icon-wrapper">
+                <span class="icon-line horizontal"></span>
+                <span class="icon-line vertical"></span>
+              </span>
+            </button>
+            <div class="luxury-faq-content">
+              <div class="content-inner">
+                <p>Amish craftsmanship is anchored in a multigenerational heritage of precision joinery, utilizing genuine structural timber framing and mortise-and-tenon construction. By hand-selecting architectural-grade lumber and avoiding fast, mass-production shortcuts, these structures offer immense load-bearing resilience, superior thermal integrity, and a lifespan measured in generations rather than decades.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 2 -->
+          <div class="luxury-faq-item">
+            <button type="button" class="luxury-faq-trigger" aria-expanded="false">
+              <span class="faq-item-number">02</span>
+              <span class="faq-item-title">Can I fully customize my architectural layout, or do you only execute template designs?</span>
+              <span class="luxury-icon-wrapper">
+                <span class="icon-line horizontal"></span>
+                <span class="icon-line vertical"></span>
+              </span>
+            </button>
+            <div class="luxury-faq-content">
+              <div class="content-inner">
+                <p>Every single commission is fully bespoke and engineered to order. While we maintain a premium portfolio of previous builds for inspiration, our master woodworkers specialize exclusively in built-to-suit configurations. From modified timber-frame barn layouts to custom structural remodeling footprints, every design is tailored to fit your specific land profile and aesthetic vision.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+</MainLayout>
+
+<!-- LOGICAL CLIENT INTERACTION ENGINE -->
+<script is:inline>
+  // ─── 1. LEAD CAPTURE & MODAL HANDLING ───
+  const openBtn = document.getElementById('openModalBtn');
+  const closeBtn = document.getElementById('closeModalBtn');
+  const modal = document.getElementById('leadModal');
+  const leadForm = document.getElementById('leadCaptureForm');
+  
+  const stateSelector = document.getElementById('stateSelector');
+  const serviceSelector = document.getElementById('serviceSelector');
+  
+  const hiddenStateInput = document.getElementById('hiddenStateInput');
+  const hiddenServiceInput = document.getElementById('hiddenServiceInput');
+
+  openBtn?.addEventListener('click', () => {
+    if (!stateSelector || !serviceSelector || !hiddenStateInput || !hiddenServiceInput) return;
+
+    const selectedState = stateSelector.value;
+    const selectedService = serviceSelector.value;
+
+    if (selectedState === "" || selectedService === "") {
+      alert("Please select both a State and a Service before finding contractors.");
+      return; 
+    }
+
+    const hasSubmittedBefore = localStorage.getItem('hasUnlockedContractors');
+
+    if (hasSubmittedBefore === 'true') {
+      window.location.href = `/search?state=${encodeURIComponent(selectedState)}&service=${encodeURIComponent(selectedService)}`;
+    } else {
+      hiddenStateInput.value = selectedState;
+      hiddenServiceInput.value = selectedService;
+      modal?.classList.add('is-active');
+    }
+  });
+
+  leadForm?.addEventListener('submit', () => {
+    localStorage.setItem('hasUnlockedContractors', 'true');
+  });
+
+  closeBtn?.addEventListener('click', () => { modal?.classList.remove('is-active'); });
+  modal?.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('is-active'); });
+
+
+  // ─── 2. LUXURY ACCORDION FUNCTIONS ───
+  function initializeLuxuryAccordions() {
+    const faqItems = document.querySelectorAll(".luxury-faq-item");
+    
+    faqItems.forEach((item) => {
+      const trigger = item.querySelector(".luxury-faq-trigger");
+      const content = item.querySelector(".luxury-faq-content");
+      
+      if (!trigger || !content) return;
+
+      if (item.classList.contains("active")) {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } else {
+        content.style.maxHeight = "0px";
+      }
+
+      trigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isCurrentlyActive = item.classList.contains("active");
+
+        faqItems.forEach((otherItem) => {
+          if (otherItem !== item) {
+            otherItem.classList.remove("active");
+            const otherTrigger = otherItem.querySelector(".luxury-faq-trigger");
+            const otherContent = otherItem.querySelector(".luxury-faq-content");
+            if (otherTrigger) otherTrigger.setAttribute("aria-expanded", "false");
+            if (otherContent) otherContent.style.maxHeight = "0px";
+          }
+        });
+
+        if (isCurrentlyActive) {
+          item.classList.remove("active");
+          trigger.setAttribute("aria-expanded", "false");
+          content.style.maxHeight = "0px";
+        } else {
+          item.classList.add("active");
+          trigger.setAttribute("aria-expanded", "true");
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    });
+  }
+
+
+  // ─── 3. INTERACTIVE MAP CONTROLLER ENGINE (ALL 30 STATES) ───
+  function initializeCoverageMap() {
+    const mapContainer = document.getElementById('interactive-coverage-map');
+    if (!mapContainer || typeof window.L === "undefined") return;
+
+    const L = window.L;
+
+    if (mapContainer._leaflet_id) {
+      mapContainer._leaflet_id = null;
+    }
+
+    const map = L.map('interactive-coverage-map', {
+      center: [38.5, -96.0],
+      zoom: 4,
+      zoomControl: false,
+      scrollWheelZoom: false
+    });
+
+    // FIXED: Valid CDN map tile server URL address path
+    L.tileLayer('https://{s}://{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+    const statesServed = [
+      { name: "Alabama", lat: 32.806671, lng: -86.791130 },
+      { name: "Arkansas", lat: 34.969704, lng: -92.373123 },
+      { name: "Colorado", lat: 39.550051, lng: -105.782067 },
+      { name: "Delaware", lat: 38.910832, lng: -75.527670 },
+      { name: "Florida", lat: 27.664827, lng: -81.515754 },
+      { name: "Georgia", lat: 32.165622, lng: -82.900075 },
+      { name: "Illinois", lat: 40.633125, lng: -89.398528 },
+      { name: "Indiana", lat: 40.551223, lng: -85.602364 },
+      { name: "Iowa", lat: 41.878003, lng: -93.097702 },
+      { name: "Kansas", lat: 39.011902, lng: -98.484246 },
+      { name: "Kentucky", lat: 37.839333, lng: -84.270018 },
+      { name: "Maine", lat: 45.253783, lng: -69.445469 },
+      { name: "Maryland", lat: 39.045755, lng: -76.641271 },
+      { name: "Michigan", lat: 44.314844, lng: -85.602364 },
+      { name: "Minnesota", lat: 46.729553, lng: -94.685900 },
+      { name: "Missouri", lat: 37.964253, lng: -91.831833 },
+      { name: "Nebraska", lat: 41.492537, lng: -99.901813 },
+      { name: "New Jersey", lat: 40.058324, lng: -74.405661 },
+      { name: "New York", lat: 43.299428, lng: -74.217933 },
+      { name: "North Carolina", lat: 35.759573, lng: -79.019300 },
+      { name: "Ohio", lat: 40.417287, lng: -82.907123 },
+      { name: "Oklahoma", lat: 35.007752, lng: -97.092877 },
+      { name: "Pennsylvania", lat: 41.203322, lng: -77.194525 },
+      { name: "South Carolina", lat: 33.836081, lng: -81.163725 },
+      { name: "Tennessee", lat: 35.517491, lng: -86.580447 },
+      { name: "Texas", lat: 31.968599, lng: -99.901813 },
+      { name: "Vermont", lat: 44.558803, lng: -72.577841 },
+      { name: "Virginia", lat: 37.431573, lng: -78.656894 },
+      { name: "West Virginia", lat: 38.597626, lng: -80.454903 },
+      { name: "Wisconsin", lat: 43.784440, lng: -88.787868 }
+    ];
+
+    statesServed.forEach(state => {
+      const circle = L.circleMarker([state.lat, state.lng], {
+        color: '#eebb88',
+        fillColor: '#8b5a2b',
+        fillOpacity: 0.8,
+        radius: 7,
+        weight: 1.5
+      }).addTo(map);
+      
+      const popupContent = `
+        <div style="font-family:-apple-system,BlinkMacSystemFont,sans-serif; padding:2px; min-width:140px;">
+          <strong style="color:#2b1a11; font-size:14px; display:block; margin-bottom:4px;">${state.name}</strong>
+          <span style="color:#666; font-size:11px; display:block; margin-bottom:8px;">Active Building Hub</span>
+          <a href="/search?state=${encodeURIComponent(state.name)}" style="display:inline-block; color:#8b5a2b; font-size:12px; font-weight:600; text-decoration:none;">Find Contractors →</a>
+        </div>
+      `;
+      
+      circle.bindPopup(popupContent);
+    });
+
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 200);
+  }
+
+
+  // ─── 4. GLOBAL LIFECYCLE ROUTERS & INITIALIZERS ───
+  if (typeof window !== "undefined") {
+    initializeLuxuryAccordions();
+    initializeCoverageMap();
+    
+    document.addEventListener("astro:after-swap", () => {
+      initializeLuxuryAccordions();
+      initializeCoverageMap();
+    });
+    
+    window.addEventListener("resize", () => {
+      document.querySelectorAll(".luxury-faq-item.active .luxury-faq-content").forEach((el) => {
+        el.style.maxHeight = el.scrollHeight + "px";
+      });
+    });
+  }
+</script>
+
+
+
+
+<style>
+/* Search Dropdown Panel Layout */
+.search-box {
+  display: flex;
+  gap: 15px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.search-box select {
+  padding: 12px;
+  font-size: 16px;
+  min-width: 250px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.search-box button {
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #5c3b28;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* Indention */
+/* Container scales to hold everything dead center */
+
+/* 1. Main Hero Container */
+.acc-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 85vh;
+  padding: 100px 20px;
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  
+  background-image: url('/images/background-hero.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* CHANGE THIS TO ZERO TO REMOVE THE ROUNDED CORNERS */
+  border-radius: 0 !important; 
+}
+
+
+.acc-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* 2. ADD A DARK GRADIENT OVERLAY FOR TEXT READABILITY */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)); 
+  z-index: 1;
+}
+
+
+/* 3. Text & Content wrapper container box */
+.acc-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 4. LIGHTEN ALL LETTERS BELOW */
+.acc-eyebrow {
+  color: #eebb88 !important; /* Elegant light wood-accent tone */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.acc-hero-title {
+  color: #ffffff !important; /* Forced to pure vibrant white */
+  font-size: 3.2rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.acc-hero-title em {
+  color: #eebb88 !important; /* Golden-brown highlights for emphasis words */
+  font-style: italic;
+}
+
+.acc-hero-sub {
+  color: #f0ede9 !important; /* Off-white highly legible text */
+  font-size: 1.15rem;
+  max-width: 650px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.acc-stat-lbl {
+  color: #d1c5b9 !important; /* Clean readable labels */
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* Centered Search Strip Styling */
+.search-box {
+  display: flex;
+  gap: 15px;
+  margin: 30px auto;
+  flex-wrap: wrap;
+  justify-content: center; /* Centers items inside the search box */
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-box select {
+  padding: 14px;
+  font-size: 16px;
+  min-width: 250px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.search-box button {
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #5c3b28;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* Centered Statistics Layout Block */
+.acc-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.acc-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* FIXED AND CORRECTED FULLSCREEN OVERLAY MODAL STYLING */
+.modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(5px);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 99999 !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Triggers when user clicks the find button */
+.modal-overlay.is-active {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.modal-window {
+  background: #ffffff !important;
+  padding: 30px !important;
+  border-radius: 12px !important;
+  width: 90% !important;
+  max-width: 450px !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+  display: block !important;
+}
+
+.modal-window h2 {
+  margin: 0 0 10px 0 !important;
+  color: #5c3b28 !important;
+  font-size: 1.6rem !important;
+}
+
+.modal-window p {
+  color: #555 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.4 !important;
+  margin-bottom: 20px !important;
+}
+
+.input-field-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  margin-bottom: 15px !important;
+  text-align: left !important;
+}
+
+.input-field-group label {
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  color: #333 !important;
+}
+
+.input-field-group input {
+  padding: 12px !important;
+  font-size: 15px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 6px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.modal-actions-row {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+  margin-top: 25px !important;
+}
+
+.btn-cancel {
+  background: #f0f0f0 !important;
+  border: none !important;
+  padding: 12px 20px !important;
+  border-radius: 6px !important;
+  cursor: pointer;
+  font-weight: bold;
+  color: #555 !important;
+}
+
+.btn-submit {
+  background: #5c3b28 !important;
+  color: white !important;
+  border: none !important;
+  padding: 12px 20px !important;
+  border-radius: 6px !important;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* --- COMPREHENSIVE SERVICE GRID DESIGN RULES --- */
+.services-directory-section {
+  background-color: #1e1b18 !important; /* Premium dark background palette */
+  padding: 80px 20px !important;
+  color: #ffffff !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.directory-container {
+  max-width: 1200px !important; /* Spans perfectly alongside navigation lines */
+  margin: 0 auto !important;
+}
+
+.directory-header {
+  text-align: left !important;
+  margin-bottom: 45px !important;
+  max-width: 750px !important;
+}
+
+.directory-eyebrow {
+  color: #d4a373 !important; /* Timber amber accent tone */
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  display: block !important;
+  margin-bottom: 12px !important;
+}
+
+.directory-title {
+  font-size: 2.5rem !important;
+  color: #eae3da !important;
+  line-height: 1.2 !important;
+  margin: 0 0 15px 0 !important;
+  font-weight: 800 !important;
+}
+
+.directory-subtitle {
+  color: #a89f95 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+}
+
+/* --- BALANCED AUTO-FIT GRID ROW PATTERN ENGINE --- */
+.services-directory-grid {
+  display: grid !important;
+  /* Automatically fits as many clean 280px photo cards as possible per row */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important; 
+  gap: 25px !important;
+  width: 100% !important;
+}
+
+/* --- THE NEW MODERN PHOTO TILES --- */
+.service-photo-card {
+  text-decoration: none !important;
+  color: #ffffff !important;
+  border-radius: 14px !important;
+  padding: 35px 25px !important;
+  min-height: 240px !important; /* Unified uniform card dimensions */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  
+  /* Background Frame Rules */
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  overflow: hidden !important;
+}
+
+.service-photo-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+  border-color: #d4a373 !important;
+}
+
+.service-card-meta {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  z-index: 2 !important;
+}
+
+.service-card-icon {
+  font-size: 2.2rem !important;
+  line-height: 1 !important;
+}
+
+.service-photo-card h3 {
+  margin: 0 !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+}
+
+.service-card-badge {
+  background-color: rgba(212, 163, 115, 0.95) !important; /* Soft gold-brown */
+  color: #2b1a11 !important;
+  padding: 5px 12px !important;
+  border-radius: 6px !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  z-index: 2 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Mobile responsive fallback adjustments */
+@media (max-width: 600px) {
+  .services-directory-grid {
+    grid-template-columns: 1fr !important; /* Clean clean single vertical row stack on mobile phone displays */
+  }
+  .service-photo-card {
+    min-height: 200px !important;
+    padding: 25px !important;
+  }
+}
+
+/* ── TESTIMONIALS ── */
+.acc-testi-section { 
+  background: #fdf9f4; 
+  padding: 5rem 0; 
+}
+
+/* ✨ FIX: Limits width and centers the grid to match the upper section */
+.acc-testi-section .acc-inner {
+  max-width: 1140px;  /* Adjust this value to match your upper content's max-width */
+  margin: 0 auto;     /* Centers the block on the screen */
+  padding: 0 20px;    /* Prevents the cards from touching the screen edge on smaller monitors */
+}
+
+/* Centers your headings */
+.acc-testi-section .acc-section-label,
+.acc-testi-section .acc-section-title {
+  text-align: center;
+}
+
+.acc-testi-section .acc-section-title {
+  margin-bottom: 3rem; 
+}
+
+/* Grid layout with constrained width */
+.acc-testi-grid { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 24px; 
+}
+
+.acc-testi-card {
+  background: #fff; 
+  border: 1px solid #c9a87a33;
+  border-radius: 14px; 
+  padding: 1.75rem;
+}
+
+.acc-stars { color: #c9a87a; font-size: 16px; margin-bottom: .85rem; letter-spacing: 3px; }
+
+.acc-testi-text {
+  font-size: 15px; 
+  color: #3d2210; 
+  line-height: 1.85;
+  font-family: 'Source Serif 4', serif; 
+  font-style: italic;
+  font-weight: 300; 
+  margin-bottom: 1.25rem;
+}
+
+.acc-author { display: flex; align-items: center; gap: 12px; }
+
+.acc-avatar {
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%;
+  background: #e8d5bc; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  font-size: 13px; 
+  font-weight: 700; 
+  color: #5c3b28; 
+  flex-shrink: 0;
+}
+
+.acc-author-name { font-size: 14px; font-weight: 700; color: #3d2210; display: block; }
+.acc-author-loc { font-size: 12px; color: #8a6045; display: block; margin-top: 2px; }
+
+/* ─── SYSTEM PREMIUM TOKENS ─── */
+  :root {
+    --color-timber-dark: #1e120c;
+    --color-timber-primary: #2a1a12;
+    --color-luxury-gold: #c5a47e;
+    --color-bg-cream: #fbf9f6;
+    --color-bg-white: #ffffff;
+    --color-text-muted: #6e6259;
+    --color-border-fine: #ebdccb;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* ─── MAIN LAYOUT WRAPPER ─── */
+  .luxury-contact-wrapper,
+  .luxury-contact-wrapper * {
+    box-sizing: border-box !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .luxury-contact-wrapper {
+    background-color: var(--color-bg-cream) !important;
+    font-family: var(--font-sans) !important;
+    color: var(--color-timber-primary) !important;
+    padding: 100px 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+  }
+
+  /* ─── HERO INTRO HEADER (FIXED FULL BRAND BANNER CARD) ─── */
+.luxury-hero-header {
+  text-align: center !important;
+  max-width: 1200px !important; /* Expanded to match grid container lines */
+  width: 100% !important;
+  margin: 40px auto 40px auto !important; 
+  padding: 60px 40px !important; /* Thick interior cell space padding */
+  background-color: #2b1a11 !important; /* Forced background match theme */
+  border-radius: 12px !important; /* Premium curved corner treatments */
+  box-sizing: border-box !important;
+  box-shadow: 0 20px 50px rgba(42, 26, 18, 0.04) !important;
+}
+
+.luxury-badge {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.25em !important;
+  color: #eebb88 !important; /* Beautiful crisp premium gold variable */
+  display: block !important;
+  margin-bottom: 16px !important;
+}
+
+.luxury-hero-header h1 {
+  font-size: clamp(28px, 3.5vw, 42px) !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.01em !important;
+  color: #ffffff !important; /* Inverted to clean white for ultra-rich contrast */
+  margin: 0 0 16px 0 !important;
+  line-height: 1.3 !important;
+}
+
+.luxury-hero-header p {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: #c4b5a4 !important; /* Adjusted to soft readable contrast cream text tint */
+  max-width: 700px !important;
+  margin: 0 auto !important;
+}
+
+
+  /* ─── MAIN CONTAINER GRID ─── */
+  .luxury-grid-container {
+    background: var(--color-bg-white) !important;
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    border: 1px solid var(--color-border-fine) !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1.5fr !important;
+    box-shadow: 0 40px 80px rgba(42, 26, 18, 0.05) !important;
+    overflow: hidden !important;
+  }
+
+  @media (max-width: 991px) {
+    .luxury-grid-container {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* ─── SIDEBAR PANEL ─── */
+  .luxury-info-sidebar {
+    background: var(--color-timber-dark) !important;
+    color: var(--color-bg-white) !important;
+    padding: 60px 48px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+  }
+
+  .brand-accent-line {
+    width: 40px !important;
+    height: 2px !important;
+    background: var(--color-luxury-gold) !important;
+    margin-bottom: 24px !important;
+  }
+
+  .luxury-info-sidebar h2 {
+    font-size: 28px !important;
+    font-weight: 400 !important;
+    line-height: 1.3 !important;
+    margin-bottom: 16px !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  .sidebar-lead {
+    color: #c4b6ae !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 40px !important;
+  }
+
+  .luxury-call-widget {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-top: 32px !important;
+    margin-top: auto !important;
+  }
+
+  .widget-label {
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    color: var(--color-luxury-gold) !important;
+    display: block !important;
+    margin-bottom: 8px !important;
+  }
+
+  .luxury-call-widget h3 {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    margin-bottom: 8px !important;
+    color: #e6ded7 !important;
+  }
+
+  .luxury-phone-link {
+    color: var(--color-bg-white) !important;
+    text-decoration: none !important;
+    font-size: 24px !important;
+    font-weight: 300 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    transition: color 0.3s ease !important;
+  }
+
+  .luxury-phone-link svg {
+    color: var(--color-luxury-gold) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .luxury-phone-link:hover {
+    color: var(--color-luxury-gold) !important;
+  }
+
+  .luxury-phone-link:hover svg {
+    transform: translateX(4px) !important;
+  }
+
+  .widget-note {
+    font-size: 12px !important;
+    color: #8c7d73 !important;
+    margin-top: 12px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* ─── FORM PANEL ─── */
+  .luxury-form-panel {
+    padding: 60px !important;
+    background: var(--color-bg-white) !important;
+  }
+
+  @media (max-width: 768px) {
+    .luxury-info-sidebar,
+    .luxury-form-panel {
+      padding: 40px 24px !important;
+    }
+  }
+
+  .luxury-form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 40px !important; /* Enhanced spacing between sections */
+  }
+
+  .luxury-form-row {
+    display: flex !important;
+    gap: 40px !important;
+    width: 100% !important;
+  }
+
+  @media (max-width: 600px) {
+    .luxury-form-row {
+      flex-direction: column !important;
+      gap: 40px !important;
+    }
+  }
+
+  /* Custom Input Groups */
+  .luxury-input-group {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    width: 100% !important;
+  }
+
+  .luxury-input-group label {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    color: var(--color-timber-dark) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    margin-bottom: 4px !important;
+  }
+
+  .luxury-input-group input,
+  .luxury-input-group textarea {
+    width: 100% !important;
+    padding: 12px 4px !important; /* Perfect inner spacing */
+    border: none !important;
+    border-bottom: 1px solid var(--color-border-fine) !important;
+    background-color: transparent !important;
+    font-size: 15px !important;
+    color: var(--color-timber-primary) !important;
+    outline: none !important;
+    transition: border-color 0.3s ease, background-color 0.3s ease !important;
+    border-radius: 0px !important;
+    line-height: 1.5 !important;
+  }
+
+  .luxury-input-group input:focus,
+  .luxury-input-group textarea:focus {
+    border-bottom-color: var(--color-timber-dark) !important;
+    background-color: #fbfbf9 !important; /* High-end subtle feedback tint */
+  }
+
+  .luxury-input-group textarea {
+    resize: vertical !important;
+  }
+
+  .luxury-submit-btn {
+    background: var(--color-timber-primary) !important;
+    color: var(--color-bg-white) !important;
+    border: none !important;
+    padding: 18px 36px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.2em !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    transition: background-color 0.3s ease !important;
+    margin-top: 12px !important;
+    width: 100% !important;
+  }
+
+  .luxury-submit-btn:hover {
+    background: var(--color-timber-dark) !important;
+  }
+
+  .btn-arrow-icon {
+    display: flex !important;
+    align-items: center !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .luxury-submit-btn:hover .btn-arrow-icon {
+    transform: translateX(4px) !important;
+  }
+
+/* ─── COMPACT REFINED ACCORDION FAQ SECTION ─── */
+.luxury-faq-section {
+  max-width: 960px !important; /* Strips runaway width stretching entirely */
+  width: 100% !important;
+  margin: 40px auto 0 auto !important;
+  border-top: 1px solid var(--color-border-fine) !important;
+  padding: 40px 16px 0 16px !important; /* Tightened compact padding bounds */
+}
+
+.faq-grid-layout {
+  display: grid !important;
+  grid-template-columns: 1fr 1.4fr !important;
+  gap: 40px !important;
+  width: 100% !important;
+}
+
+@media (max-width: 991px) {
+  .faq-grid-layout {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+.faq-sticky-header {
+  position: sticky !important;
+  top: 24px !important;
+  height: fit-content !important;
+}
+
+@media (max-width: 991px) {
+  .faq-sticky-header {
+    position: relative !important;
+    top: 0 !important;
+  }
+}
+
+.faq-section-badge {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  color: var(--color-luxury-gold) !important;
+  display: block !important;
+  margin-bottom: 8px !important;
+}
+
+.faq-sticky-header h2 {
+  font-size: clamp(20px, 3.5vw, 26px) !important; /* Clean downscaled typography rule */
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+  color: var(--color-timber-dark) !important;
+  margin-bottom: 12px !important;
+  line-height: 1.2 !important;
+}
+
+.faq-sticky-header p {
+  color: var(--color-text-muted) !important;
+  font-size: 13px !important; /* Stripped heavy zoomed text weights */
+  line-height: 1.5 !important;
+  margin-bottom: 16px !important;
+}
+
+.faq-action-prompt {
+  font-size: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+}
+
+.faq-action-prompt span {
+  color: var(--color-text-muted) !important;
+}
+
+.faq-action-prompt a {
+  color: var(--color-timber-dark) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid var(--color-timber-dark) !important;
+  padding-bottom: 1px !important;
+  transition: all 0.2s ease !important;
+}
+
+.faq-action-prompt a:hover {
+  color: var(--color-luxury-gold) !important;
+  border-bottom-color: var(--color-luxury-gold) !important;
+}
+
+/* Accordion Custom Framework */
+.faq-accordion-container {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+.luxury-faq-item {
+  border-bottom: 1px solid var(--color-border-fine) !important;
+  transition: border-color 0.3s ease !important;
+  width: 100% !important;
+}
+
+.luxury-faq-item:first-child {
+  border-top: 1px solid var(--color-border-fine) !important;
+}
+
+.faq-item-number {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: var(--color-luxury-gold) !important;
+  margin-top: 2px !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+.luxury-faq-trigger {
+  background: none !important;
+  border: none !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  padding: 18px 0px !important; 
+  cursor: pointer !important;
+  text-align: left !important;
+  gap: 12px !important;
+  position: relative !important; /* 🌟 Critical for icon clearance containment */
+}
+
+.faq-item-title {
+  font-size: clamp(14px, 2.5vw, 15px) !important;
+  font-weight: 500 !important;
+  color: var(--color-timber-dark) !important;
+  line-height: 1.4 !important;
+  flex-grow: 1 !important;
+  transition: color 0.2s ease !important;
+  padding-right: 32px !important; /* 🌟 Creates safety clearance room so text never pushes icons */
+}
+
+/* Elegant Plus/Minus Icon Toggle Mechanics */
+.luxury-icon-wrapper {
+  position: absolute !important; /* 🌟 Anchors the button crisp on the right margin corner */
+  right: 4px !important;
+  top: 22px !important;
+  width: 12px !important;
+  height: 12px !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+
+.luxury-faq-item:hover .faq-item-title {
+  color: var(--color-luxury-gold) !important;
+}
+
+/* Elegant Plus/Minus Icon Toggle Mechanics */
+.luxury-icon-wrapper {
+  position: relative !important;
+  width: 12px !important;
+  height: 12px !important;
+  margin-top: 4px !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+.icon-line {
+  position: absolute !important;
+  background-color: var(--color-timber-primary) !important;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease !important;
+}
+
+.icon-line.horizontal {
+  width: 100% !important;
+  height: 1px !important;
+  top: 50% !important;
+  left: 0 !important;
+  transform: translateY(-50%) !important;
+}
+
+.icon-line.vertical {
+  width: 1px !important;
+  height: 100% !important;
+  left: 50% !important;
+  top: 0 !important;
+  transform: translateX(-50%) !important;
+}
+
+.luxury-faq-item.active .icon-line.vertical {
+  transform: translateX(-50%) scaleY(0) !important;
+}
+
+.luxury-faq-item.active .icon-line.horizontal {
+  background-color: var(--color-luxury-gold) !important;
+}
+
+/* Dynamic Animation Panels Calculation Layout */
+.luxury-faq-content {
+  max-height: 0;
+  overflow: hidden !important;
+  transition: max-height 0.3s ease-out !important;
+  width: 100% !important;
+}
+
+.content-inner {
+  padding-bottom: 16px !important;
+  padding-left: 24px !important; /* Snaps text flow directly beneath headers */
+  max-width: 100% !important;
+}
+
+.content-inner p {
+  color: var(--color-text-muted) !important;
+  font-size: 13px !important; /* Balanced, small luxury description sizing */
+  line-height: 1.5 !important;
+}
+
+/* ─── INTERACTIVE MAP DASHBOARD STYLING ─── */
+.map-dashboard-section {
+  width: 100%;
+  background-color: #f7f4ee; /* Warm cream background */
+  padding: 80px 20px;
+  box-sizing: border-box;
+}
+
+.map-dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr; /* Asymmetric split layout */
+  gap: 50px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 30px 60px rgba(43, 26, 17, 0.04);
+  overflow: hidden;
+  border: 1px solid #eaddd3;
+}
+
+/* Left Content Sidebar */
+.map-info-panel {
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #2b1a11; /* Deep timber brown background */
+  color: #ffffff;
+}
+
+.panel-badge {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #eebb88; /* Brand accent gold */
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.map-info-panel h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.map-info-panel p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #c4b5a4; /* Soft cream paragraph text */
+  margin: 0 0 35px 0;
+}
+
+/* Coverage Stat Data Nodes */
+.coverage-metrics {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 30px;
+}
+
+.metric-node strong {
+  display: block;
+  font-size: 36px;
+  font-weight: 300;
+  color: #eebb88;
+}
+
+.metric-node span {
+  font-size: 13px;
+  color: #a89a8d;
+}
+
+/* Luxury Action Redirect Links */
+.map-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #eebb88;
+  color: #2b1a11;
+  text-decoration: none;
+  padding: 14px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 6px;
+  align-self: flex-start;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.map-action-btn:hover {
+  background-color: #ffffff;
+  color: #2b1a11;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Right Interactive Map Frame Window Box */
+.map-canvas-container {
+  padding: 30px;
+  background-color: #fcfbfa;
+}
+
+.map-canvas-frame {
+  width: 100%;
+  height: 480px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+  border: 1px solid #eaddd3;
+}
+
+#interactive-coverage-map {
+  width: 100%;
+  height: 100%;
+  background-color: #1a1a1a;
+}
+
+/* Leaflet Layout Override: Elegant custom popups */
+.leaflet-popup-content-wrapper {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+  border: 1px solid #eaddd3 !important;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 991px) {
+  .map-dashboard-container {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .map-info-panel {
+    padding: 40px 30px;
+  }
+  .map-canvas-container {
+    padding: 20px;
+  }
+  .map-canvas-frame {
+    height: 350px;
+  }
+}
+
+
+</style>
