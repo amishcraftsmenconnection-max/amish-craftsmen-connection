@@ -65,18 +65,27 @@ import { blogs } from "../data/blogs.js";
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
   
-  /* 🌟 MINIMALIST LUXURY HEADER PANEL */
+    /* 🌟 FIXED MINIMALIST LUXURY HEADER PANEL (EXACT SIZE MATCH) */
   .blog-header {
-    text-align: center;
-    max-width: 1200px !important;
+    text-align: center !important;
+    max-width: 1200px !important; /* Locks width constraint to match contact and services banners */
     width: 100% !important;
-    margin: -15px auto 4rem auto !important; /* Elegant slight upward shift to snap flush */
-    padding: 60px 40px !important;
-    background-color: #2b1a11 !important; /* Premium rich deep timber brown */
+    margin: 0 auto 40px auto !important; /* Fixed: Removed negative margin to clear space below navbar */
+    padding: 30px 40px !important; /* Fixed: Keeps the container height flat and perfectly even */
+    background-color: #2b1a11 !important; 
     border-radius: 12px !important;
     box-sizing: border-box !important;
     box-shadow: 0 20px 40px rgba(43, 26, 17, 0.05) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    top: 0 !important;
+    clear: both !important;
+    z-index: 5 !important;
   }
+
   .subtitle {
     color: #eebb88 !important; /* Crisp luxury gold variable accent for readability */
     font-size: 0.85rem;

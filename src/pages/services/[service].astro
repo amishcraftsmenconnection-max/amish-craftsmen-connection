@@ -156,7 +156,7 @@ const activeStates = [...new Set(filtered.map(c => c.state))].filter(Boolean).so
           <a href="tel:+18002660037" class="contact-btn phone-btn">
             📞 Call Hotline: +1 800-266-0037
           </a>
-          <a href={`mailto:inquire@://amishcraftsmenconnection.com about ${formattedTitle}`} class="contact-btn email-btn">
+          <a href="/contact" class="contact-btn email-btn">
             ✉️ Email to Inquire
           </a>
         </div>
@@ -217,10 +217,28 @@ const activeStates = [...new Set(filtered.map(c => c.state))].filter(Boolean).so
   }
 
   /* 🌟 TOP HEADER PANEL */
+   /* ─── FIXED BRAND HEADER PANEL (ADDED TOP MARGIN) ─── */
   .page-header {
-    text-align: center;
-    margin-bottom: 3rem;
+    text-align: center !important;
+    max-width: 1200px !important; 
+    width: 100% !important;
+    /* Fixed: Increased top margin to 60px to push the back link down cleanly away from the navbar */
+    margin: 0 auto 40px auto !important;
+    padding: 30px 40px !important; 
+    background-color: #2b1a11 !important; 
+    border-radius: 12px !important; 
+    box-sizing: border-box !important;
+    box-shadow: 0 20px 50px rgba(42, 26, 18, 0.04) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    top: 0 !important;
+    clear: both !important;
+    z-index: 5 !important;
   }
+
 
   .back-link {
     display: inline-flex;
