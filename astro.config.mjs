@@ -1,5 +1,7 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
-export default defineConfig({});
+// https://astro.build
+export default defineConfig({
+  site: 'https://amishcraftsmenconnection.com', // Replace with your exact IONOS domain name
+});
+
