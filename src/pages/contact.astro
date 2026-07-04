@@ -225,69 +225,76 @@ import MainLayout from '../layouts/MainLayout.astro';
     background-color: var(--color-bg-cream) !important;
     font-family: var(--font-sans) !important;
     color: var(--color-timber-primary) !important;
-    padding: 100px 24px !important;
+    padding: 40px 24px 80px 24px !important; /* Fixed: Reduced from 160px to 40px to close the huge gap */
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important; 
     width: 100% !important;
     min-height: 100vh !important;
+    position: relative !important;
+    z-index: 1 !important; 
   }
 
- /* ─── HERO INTRO HEADER (FIXED FULL BRAND BANNER CARD) ─── */
-.luxury-hero-header {
-  text-align: center !important;
-  max-width: 1200px !important; /* Expanded to match grid container lines */
-  width: 100% !important;
-  margin: 40px auto 40px auto !important; 
-  padding: 60px 40px !important; /* Thick interior cell space padding */
-  background-color: #2b1a11 !important; /* Forced background match theme */
-  border-radius: 12px !important; /* Premium curved corner treatments */
-  box-sizing: border-box !important;
-  box-shadow: 0 20px 50px rgba(42, 26, 18, 0.04) !important;
-  margin-top: -70px !important; /* Pulls the header card slightly upward */
-  margin-bottom: 40px !important; /* Keeps a clean layout balance below it */
-}
+  /* ─── HERO INTRO HEADER ─── */
+  .luxury-hero-header {
+    text-align: center !important;
+    max-width: 1200px !important; 
+    width: 100% !important;
+    margin: 0 auto 40px auto !important; /* Adjusted bottom margin for better flow */
+    padding: 60px 40px !important; 
+    background-color: #2b1a11 !important; 
+    border-radius: 12px !important; 
+    box-sizing: border-box !important;
+    box-shadow: 0 20px 50px rgba(42, 26, 18, 0.04) !important;
+    display: block !important; 
+    position: relative !important; 
+    top: 0 !important; 
+    z-index: 5 !important;
+  }
 
-.luxury-badge {
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.25em !important;
-  color: #eebb88 !important; /* Beautiful crisp premium gold variable */
-  display: block !important;
-  margin-bottom: 16px !important;
-}
+  .luxury-badge {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.25em !important;
+    color: #eebb88 !important; 
+    display: block !important;
+    margin-bottom: 16px !important;
+  }
 
-.luxury-hero-header h1 {
-  font-size: clamp(28px, 3.5vw, 42px) !important;
-  font-weight: 400 !important;
-  letter-spacing: -0.01em !important;
-  color: #ffffff !important; /* Inverted to clean white for ultra-rich contrast */
-  margin: 0 0 16px 0 !important;
-  line-height: 1.3 !important;
-}
+  .luxury-hero-header h1 {
+    font-size: clamp(28px, 3.5vw, 42px) !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.01em !important;
+    color: #ffffff !important; 
+    margin: 0 0 16px 0 !important;
+    line-height: 1.3 !important;
+  }
 
-.luxury-hero-header p {
-  font-size: 15px !important;
-  line-height: 1.7 !important;
-  color: #c4b5a4 !important; /* Adjusted to soft readable contrast cream text tint */
-  max-width: 700px !important;
-  margin: 0 auto !important;
-}
-
+  .luxury-hero-header p {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    color: #c4b5a4 !important; 
+    max-width: 700px !important;
+    margin: 0 auto !important; 
+  }
 
   /* ─── MAIN CONTAINER GRID ─── */
   .luxury-grid-container {
     background: var(--color-bg-white) !important;
     max-width: 1200px !important;
     width: 100% !important;
-    margin: 0 auto !important;
+    margin: 0 auto !important; 
     border: 1px solid var(--color-border-fine) !important;
     display: grid !important;
     grid-template-columns: 1fr 1.5fr !important;
     box-shadow: 0 40px 80px rgba(42, 26, 18, 0.05) !important;
     overflow: hidden !important;
+    position: relative !important; 
+    top: 0 !important;
+    z-index: 10 !important; 
+    clear: both !important;
   }
 
   @media (max-width: 991px) {
@@ -398,7 +405,7 @@ import MainLayout from '../layouts/MainLayout.astro';
   .luxury-form {
     display: flex !important;
     flex-direction: column !important;
-    gap: 40px !important; /* Enhanced spacing between sections */
+    gap: 40px !important; 
   }
 
   .luxury-form-row {
@@ -434,7 +441,7 @@ import MainLayout from '../layouts/MainLayout.astro';
   .luxury-input-group input,
   .luxury-input-group textarea {
     width: 100% !important;
-    padding: 12px 4px !important; /* Perfect inner spacing */
+    padding: 12px 4px !important; 
     border: none !important;
     border-bottom: 1px solid var(--color-border-fine) !important;
     background-color: transparent !important;
@@ -449,7 +456,7 @@ import MainLayout from '../layouts/MainLayout.astro';
   .luxury-input-group input:focus,
   .luxury-input-group textarea:focus {
     border-bottom-color: var(--color-timber-dark) !important;
-    background-color: #fbfbf9 !important; /* High-end subtle feedback tint */
+    background-color: #fbfbf9 !important; 
   }
 
   .luxury-input-group textarea {
