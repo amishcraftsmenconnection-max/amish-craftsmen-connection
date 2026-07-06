@@ -18,7 +18,7 @@ city: "Puxatawney, 780 Berry Rd",
 service: "Sheds, Logging, Fencing, Roofers/Siding",
 phone: "(814) 233-7734",
 description: "Menno Miller is a multi-service contracting specialist based in Punxsutawney, Pennsylvania. operating out of 780 Berry Rd, this active business offers a versatile range of exterior property solutions, specializing in custom sheds, professional logging, durable fencing, and expert roofing and siding installation. Combining craftsmanship with regional expertise, Menno Miller provides homeowners and agricultural clients across Pennsylvania with reliable, weather-resistant structures and land management services tailored to withstand the local climate.",
-image: "/images/menno-miller.png"
+image: "/images/meno-miller-pic.png"
 },
 
 {

@@ -137,6 +137,7 @@ import MainLayout from '../layouts/MainLayout.astro';
     </section>
 
   </div>
+
 </MainLayout>
 
 
@@ -150,7 +151,6 @@ import MainLayout from '../layouts/MainLayout.astro';
       
       if (!trigger || !content) return;
 
-      // Handle default open states smoothly on page mount
       if (item.classList.contains("active")) {
         content.style.maxHeight = content.scrollHeight + "px";
       } else {
@@ -161,7 +161,6 @@ import MainLayout from '../layouts/MainLayout.astro';
         e.preventDefault();
         const isCurrentlyActive = item.classList.contains("active");
 
-        // Close all other instances for classic elegant accordion flow
         faqItems.forEach((otherItem) => {
           if (otherItem !== item) {
             otherItem.classList.remove("active");
@@ -172,7 +171,6 @@ import MainLayout from '../layouts/MainLayout.astro';
           }
         });
 
-        // Toggle state of current item
         if (isCurrentlyActive) {
           item.classList.remove("active");
           trigger.setAttribute("aria-expanded", "false");
@@ -186,19 +184,79 @@ import MainLayout from '../layouts/MainLayout.astro';
     });
   }
 
-  // Bind to lifecycle events
   if (typeof window !== "undefined") {
     initializeLuxuryAccordions();
     document.addEventListener("astro:after-swap", initializeLuxuryAccordions);
     
-    // Auto-update heights if window is resized while items are active
     window.addEventListener("resize", () => {
       document.querySelectorAll(".luxury-faq-item.active .luxury-faq-content").forEach((el) => {
         (el as HTMLElement).style.maxHeight = el.scrollHeight + "px";
       });
     });
   }
+</script> <!-- ✅ CRITICAL FIX: Closed the accordion script block properly here -->
+
+<!-- SUPABASE LIBRARY -->
+<script>
+  import { createClient } from '@supabase/supabase-js';
+
+  // Initialize Supabase Client (Make sure to replace these placeholder strings with your actual keys)
+  const SUPABASE_URL = "https://your-actual-id.supabase.co"; 
+  const SUPABASE_ANON_KEY = "your-actual-anon-key"; 
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const premiumContactForm = document.getElementById('premiumContactForm') as HTMLFormElement;
+
+  if (premiumContactForm) {
+    premiumContactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = premiumContactForm.querySelector('.luxury-submit-btn') as HTMLButtonElement;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        const btnText = submitBtn.querySelector('span');
+        if (btnText) btnText.textContent = "Submitting...";
+      }
+
+      const firstNameInput = premiumContactForm.elements.namedItem('firstName') as HTMLInputElement;
+      const lastNameInput = premiumContactForm.elements.namedItem('lastName') as HTMLInputElement;
+      const emailInput = premiumContactForm.elements.namedItem('email') as HTMLInputElement;
+      const phoneInput = premiumContactForm.elements.namedItem('phone') as HTMLInputElement;
+      const addressInput = premiumContactForm.elements.namedItem('address') as HTMLInputElement;
+      const messageInput = premiumContactForm.elements.namedItem('message') as HTMLTextAreaElement;
+
+      const { error } = await supabase
+        .from('inquiries')
+        .insert([{
+          firstName: firstNameInput.value,
+          lastName: lastNameInput.value,
+          inquiryEmail: emailInput.value,
+          inquiryPhone: phoneInput.value,
+          projectAddress: addressInput.value,
+          message: messageInput.value
+        }]);
+
+      if (error) {
+        console.error('Supabase inquiry error:', error);
+        alert('Could not submit inquiry. Please try again.');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          const btnText = submitBtn.querySelector('span');
+          if (btnText) btnText.textContent = "Submit Specifications";
+        }
+      } else {
+        alert('Your specifications have been submitted successfully!');
+        premiumContactForm.reset();
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          const btnText = submitBtn.querySelector('span');
+          if (btnText) btnText.textContent = "Submit Specifications";
+        }
+      }
+    });
+  }
 </script>
+
 
 <style is:global>
   /* ─── SYSTEM PREMIUM TOKENS ─── */

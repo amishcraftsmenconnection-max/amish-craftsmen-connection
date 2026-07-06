@@ -108,6 +108,7 @@ const { contractor } = Astro.props;
         
         <!-- 1. YOUR ORIGINAL ESTIMATE FORM (REMAINS EXACTLY THE SAME) -->
         <div class="minimal-form-box">
+          <form id="bookingForm" class="clean-form"></form>
           <h2 class="form-heading">Book your Service</h2>
           <p class="form-subheading">Send a direct inquiry regarding project scopes and scheduling availability.</p>
           
@@ -115,40 +116,41 @@ const { contractor } = Astro.props;
             <div class="form-row">
               <div class="input-group">
                 <label>First Name</label>
-                <input type="text" placeholder="John" required />
+                <input type="text" name="first_name" placeholder="John" required />
               </div>
               <div class="input-group">
                 <label>Last Name</label>
-                <input type="text" placeholder="Doe" required />
+                <input type="text" name="last_name" placeholder="Doe" required />
               </div>
             </div>
 
             <div class="form-row">
               <div class="input-group">
                 <label>Email Address</label>
-                <input type="email" placeholder="john@example.com" required />
+                <input type="email" name="email" placeholder="john@example.com" required />
               </div>
               <div class="input-group">
                 <label>Phone Number</label>
-                <input type="tel" placeholder="(555) 000-0000" required />
+                <input type="tel" name="phone" placeholder="(555) 000-0000" required />
               </div>
             </div>
 
             <div class="input-group">
               <label>Service Needed</label>
-              <div class="select-wrapper">
-                <select required>
+                <div class="select-wrapper">
+                  <!-- Added name="service_needed" -->
+                  <select name="service_needed" required>
                   <option value="" disabled selected>Select a service...</option>
-                  {contractor.service && contractor.service.split(',').map(s => (
-                    <option value={s.trim().toLowerCase()}>{s.trim()}</option>
+                    {contractor.service && contractor.service.split(',').map(s => (
+                  <option value={s.trim().toLowerCase()}>{s.trim()}</option>
                   ))}
-                </select>
-              </div>
+                  </select>
+                </div>
             </div>
 
             <div class="input-group">
               <label>Project Site Address</label>
-              <input type="text" placeholder="Street address, city, state" required />
+              <input type="text" name="project_address" placeholder="Street address, city, state" required />
             </div>
 
             <button type="submit" class="premium-submit-btn">
@@ -254,6 +256,8 @@ const { contractor } = Astro.props;
 
     </div>
   </div>
+
+
 </MainLayout>
 
 <!-- BULLETPROOF INTERACTIVE CONTROLS SCRIPT ENGINE -->
@@ -276,13 +280,11 @@ const { contractor } = Astro.props;
     const commentInput = document.getElementById('reviewCommentInput') as HTMLTextAreaElement;
     const reviewsFeedList = document.querySelector('.reviews-feed-list');
 
-    // Dynamically fetch contractor slug from active path string
     const currentSlug = window.location.pathname.split('/').pop() || 'default';
     const storageKey = `reviews_${currentSlug}`;
 
     if (!openBtn || !modalWindow || !reviewsFeedList) return;
 
-    // AUTOMATION STEP 1: Load saved reviews on load instantly
     function loadLocalReviews() {
       const saved = localStorage.getItem(storageKey);
       if (!saved) return;
@@ -306,19 +308,17 @@ const { contractor } = Astro.props;
         <div class="review-stars">${starString}</div>
         <p class="review-comment-text">${comment}</p>
       `;
-      // Insert new reviews directly to the top of the feed list layout
       reviewsFeedList!.insertBefore(cardHtml, reviewsFeedList!.firstChild);
     }
 
     function updateReviewHeaderCounter(customCount: number) {
       const counterText = document.querySelector('.rating-text-count');
-      const baseTotal = 2 + customCount; // Accounts for your 2 core fallback hardcoded layout reviews
+      const baseTotal = 2 + customCount;
       if (counterText) {
         counterText.textContent = `5.0 out of 5 (${baseTotal} Reviews)`;
       }
     }
 
-    // Modal view window click triggers
     openBtn.addEventListener('click', () => {
       modalWindow.style.setProperty('display', 'flex', 'important');
       step1Panel!.style.display = 'block';
@@ -345,14 +345,12 @@ const { contractor } = Astro.props;
       step1Panel!.style.display = 'block';
     });
 
-    // AUTOMATION STEP 2: Intercept submit, save to storage, inject into HTML grid
     publishBtn?.addEventListener('click', () => {
       if (!commentInput.value.trim()) {
         alert('Please provide a comment detail message row before publishing.');
         return;
       }
 
-      // Grab user parameters data models safely
       const rawEmail = emailInput.value.trim();
       const extractedName = rawEmail.split('@')[0];
       const parsedName = extractedName.charAt(0).toUpperCase() + extractedName.slice(1);
@@ -366,7 +364,6 @@ const { contractor } = Astro.props;
         year: 'numeric'
       });
 
-      // Construct storage payload package strings safely
       const newReviewPayload = {
         name: parsedName,
         stars: ratingStarsValue,
@@ -379,11 +376,9 @@ const { contractor } = Astro.props;
       reviewsArray.push(newReviewPayload);
       localStorage.setItem(storageKey, JSON.stringify(reviewsArray));
 
-      // Instantly inject layout block to screen viewport frame right away
       renderReviewElement(parsedName, ratingStarsValue, commentMessageText, formattedDateLine);
       updateReviewHeaderCounter(reviewsArray.length);
 
-      // Reset and clear local modal workspace text states fields
       modalWindow.style.setProperty('display', 'none', 'important');
       emailInput.value = '';
       phoneInput.value = '';
@@ -391,14 +386,71 @@ const { contractor } = Astro.props;
       ratingSelect.value = '5';
     });
 
-    // Run active load calls
     loadLocalReviews();
   }
 
-  // Bind execution triggers perfectly matching dynamic view router engine frameworks
   document.addEventListener('DOMContentLoaded', initReviewEngine);
   document.addEventListener('astro:after-swap', initReviewEngine);
-</script>
+</script> <!-- ✅ FIXED: Properly closed the local review script block -->
+
+<!-- SUPABASE LIBRARY -->
+<script>
+  import { createClient } from '@supabase/supabase-js';
+
+  // Initialize Supabase Client (Remember to add your actual project details)
+  const SUPABASE_URL = "https://wapcsikpawmyncswaoty.supabase.co"; 
+  const SUPABASE_ANON_KEY = "sb_publishable_yINC4b01JA8d4lAm-jTGSQ_D2rgVCaF"; 
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const bookingForm = document.getElementById('bookingForm') as HTMLFormElement;
+
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = bookingForm.querySelector('.premium-submit-btn') as HTMLButtonElement;
+      if (submitBtn) {
+        submitBtn.textContent = "Processing...";
+        submitBtn.disabled = true;
+      }
+
+      const firstNameInput = bookingForm.elements.namedItem('first_name') as HTMLInputElement;
+      const lastNameInput = bookingForm.elements.namedItem('last_name') as HTMLInputElement;
+      const emailInput = bookingForm.elements.namedItem('email') as HTMLInputElement;
+      const phoneInput = bookingForm.elements.namedItem('phone') as HTMLInputElement;
+      const serviceSelect = bookingForm.elements.namedItem('service_needed') as HTMLSelectElement;
+      const addressInput = bookingForm.elements.namedItem('project_address') as HTMLInputElement;
+
+      const { error } = await supabase
+        .from('bookings')
+        .insert([{
+          firstName: firstNameInput.value,
+          lastName: lastNameInput.value,
+          bookingEmail: emailInput.value,
+          bookingPhone: phoneInput.value,
+          serviceNeeded: serviceSelect.value,
+          projectAddress: addressInput.value
+        }]);
+
+      if (error) {
+        console.error('Supabase booking error:', error);
+        alert('Could not submit request. Please try again.');
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send Book Request";
+        }
+      } else {
+        alert('Booking request sent successfully!');
+        bookingForm.reset();
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send Book Request";
+        }
+      }
+    });
+  }
+</script> <!-- ✅ FIXED: Added missing closing bracket and script tag -->
+
 
 
 <style is:global>
